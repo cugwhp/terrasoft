@@ -123,21 +123,24 @@ Buildings.createKnz = function(building, folio, nRsPoP) {
 };
 
 Buildings.findPartOfParcel = function(building, change, nRsPartOfParcel) {
-    console.log(nRsPartOfParcel);
+    //console.log(nRsPartOfParcel);
     //console.log(change);
     //console.log(building.parent.NepID);
     var result = null;
     if(change) {
-        nRsPartOfParcel.forEach(function(nRsPoP) {
+        nRsPartOfParcel.every(function(nRsPoP) {
+            //console.log(nRsPoP);
+            var advance = true;
             if(building.parent.NepID == nRsPoP.currentNepID) {
                 if (change.changelistId < nRsPoP.CHANGELISTID1) {
+                    //console.log(nRsPoP)
                     result = nRsPoP;
-                    return false;
+                    advance = false;
                 } else {
                     result = nRsPoP;
-                    return true;
                 }
             }
+            return advance;
         });
     } else {
         for(var i = nRsPartOfParcel.length; i > 0; i--) {
@@ -161,16 +164,20 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
     var nRsB;
     var changes = building.changes ? building.changes : [];
 
+    //console.log(folios);
+
     //Treba proveriti da li je bilo prethodnih promena, odnosno da li je deo parcele već obrađivan
     //Ako jeste naći poslednji uid, chid1, rlp, numidxrf
     //Ako nije dodati uid++, rlp++, numidxrf = 1
     var oldFolio;
-    for(var i = folios.length; i > 0; i--) {
+    for(var i = folios.length - 1; i > 0; i--) {
         if (building.NepID == folios[i].nextNepID) {
             oldFolio = folios[i];
             break;
         }
     }
+
+    console.log(oldFolio);
 
     if(changes.length == 0) {
         //Nema nikakvih promena na objektu
@@ -198,7 +205,7 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
             }
         }
     } else {
-        changes.forEach(function (change) {
+        changes.every(function (change) {
             var advance = true;
 
             //Tražimo deo parcele na kom je objekat
@@ -436,6 +443,7 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
             } else {
                 throw new Error('GREŠKA: Nije pronađen deo parcele!');
             }
+            return advance;
         });
     }
 };

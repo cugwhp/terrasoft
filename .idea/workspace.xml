@@ -63,7 +63,7 @@
       <file leaf-file-name="parcela_1391_0.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://D:/KNZ/test/parcela_1391_0.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.346154" vertical-offset="3003" max-vertical-offset="4063">
+            <state vertical-scroll-proportion="-47.0" vertical-offset="2076" max-vertical-offset="4063">
               <caret line="6656" column="24" selection-start-line="6656" selection-start-column="24" selection-end-line="6656" selection-end-column="24" />
               <folding>
                 <element signature="e#1077#32404#0" expanded="false" />
@@ -152,8 +152,8 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3889" max-vertical-offset="7905">
-              <caret line="246" column="35" selection-start-line="246" selection-start-column="35" selection-end-line="246" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3889" max-vertical-offset="7939">
+              <caret line="245" column="32" selection-start-line="245" selection-start-column="32" selection-end-line="245" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -162,8 +162,8 @@
       <file leaf-file-name="Buildings.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/models/Buildings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5277778" vertical-offset="2025" max-vertical-offset="7633">
-              <caret line="137" column="32" selection-start-line="137" selection-start-column="32" selection-end-line="137" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.09201389" vertical-offset="2650" max-vertical-offset="7769">
+              <caret line="159" column="16" selection-start-line="159" selection-start-column="16" selection-end-line="159" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -364,7 +364,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -795,7 +795,7 @@
     </entry>
     <entry file="file://D:/KNZ/test/parcela_1391_0.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.346154" vertical-offset="3003" max-vertical-offset="4063">
+        <state vertical-scroll-proportion="-47.0" vertical-offset="2076" max-vertical-offset="4063">
           <caret line="6656" column="24" selection-start-line="6656" selection-start-column="24" selection-end-line="6656" selection-end-column="24" />
           <folding>
             <element signature="e#1077#32404#0" expanded="false" />
@@ -852,16 +852,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3889" max-vertical-offset="7905">
-          <caret line="246" column="35" selection-start-line="246" selection-start-column="35" selection-end-line="246" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3889" max-vertical-offset="7939">
+          <caret line="245" column="32" selection-start-line="245" selection-start-column="32" selection-end-line="245" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/Buildings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5277778" vertical-offset="2025" max-vertical-offset="7633">
-          <caret line="137" column="32" selection-start-line="137" selection-start-column="32" selection-end-line="137" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.09201389" vertical-offset="2650" max-vertical-offset="7769">
+          <caret line="159" column="16" selection-start-line="159" selection-start-column="16" selection-end-line="159" selection-end-column="16" />
           <folding />
         </state>
       </provider>

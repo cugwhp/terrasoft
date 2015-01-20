@@ -253,7 +253,9 @@ Parcels.find(1391, null, result)// 1391, 773, 1625, 1627
         var nRsBuilding = [];
         PartsOfParcels.process(part, changes, ppFolios, nRsPartOfParcel);
         Buildings.process(building, nRsPartOfParcel, bFolios, nRsBuilding);
-        //console.log(bFolios);
+        var building = part.buildings[0];
+        Buildings.process(building, nRsPartOfParcel, bFolios, nRsBuilding);
+        console.log(bFolios);
         //console.log(nRsBuilding);
         /*result.forEach(function(parcel) {
             console.log(JSON.stringify(parcel, undefined, 2))
