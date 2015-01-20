@@ -1,0 +1,552 @@
+{
+  "_id": "54ac53b278fb81682d2a6d9b",
+  "BrParc": 1627,
+  "PodbrParc": null,
+  "MatBrSK": 7011393,
+  "Bonitet": null,
+  "VrZem": 7,
+  "MatBrNas": 704091,
+  "MatBrUli": 45362,
+  "NepID": 9751,
+  "BrPlana": "15",
+  "BrSkice": "90",
+  "BrManuala": null,
+  "GodSkMan": "1971",
+  "Povrsina": 522,
+  "BrojLN": 465,
+  "BrojPL": null,
+  "Geometry1": null,
+  "Geometry1_SK": null,
+  "Fakticko": true,
+  "changes": [
+    {
+      "_id": "5491746fe81292681887f921",
+      "TransID": 41,
+      "Tabela": 1,
+      "MatBrKO": 723070,
+      "TabelaID": 9751,
+      "VrstaZakljucavanja": "\"U\"",
+      "ElemPromID": 209,
+      "VrstaStanja": 2,
+      "NoviID": null,
+      "UserName": "\"dragicak\"",
+      "VremeUpisa": "4/2/2008 13:44:36\r",
+      "changelistId": 3000029
+    }
+  ],
+  "parts": [
+    {
+      "_id": "54ac53ad78fb81682d2a29a0",
+      "NepID": 9758,
+      "BrDelaParc": 4,
+      "Kultura": 370,
+      "Povrsina": 396,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "5491746fe81292681887f91f",
+          "TransID": 41,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 9758,
+          "VrstaZakljucavanja": "\"U\"",
+          "ElemPromID": 207,
+          "VrstaStanja": 2,
+          "NoviID": 9751,
+          "UserName": "\"dragicak\"",
+          "VremeUpisa": "4/2/2008 13:44:36\r",
+          "changelistId": 3000029
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a299d",
+      "NepID": 9752,
+      "BrDelaParc": 1,
+      "Kultura": 360,
+      "Povrsina": 76,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "5491746fe81292681887f923",
+          "TransID": 41,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 9752,
+          "VrstaZakljucavanja": "\"A\"",
+          "ElemPromID": 211,
+          "VrstaStanja": 2,
+          "NoviID": 22044,
+          "UserName": "\"dragicak\"",
+          "VremeUpisa": "4/2/2008 13:53:15\r",
+          "changelistId": 3000029
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a299e",
+      "NepID": 9754,
+      "BrDelaParc": 2,
+      "Kultura": 360,
+      "Povrsina": 34,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "5491746fe81292681887f924",
+          "TransID": 41,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 9754,
+          "VrstaZakljucavanja": "\"A\"",
+          "ElemPromID": 212,
+          "VrstaStanja": 2,
+          "NoviID": 22045,
+          "UserName": "\"dragicak\"",
+          "VremeUpisa": "4/2/2008 13:53:26\r",
+          "changelistId": 3000029
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a299f",
+      "NepID": 9756,
+      "BrDelaParc": 3,
+      "Kultura": 360,
+      "Povrsina": 16,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "5491746fe81292681887f925",
+          "TransID": 41,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 9756,
+          "VrstaZakljucavanja": "\"A\"",
+          "ElemPromID": 213,
+          "VrstaStanja": 2,
+          "NoviID": 22046,
+          "UserName": "\"dragicak\"",
+          "VremeUpisa": "4/2/2008 13:53:36\r",
+          "changelistId": 3000029
+        }
+      ]
+    }
+  ]
+}
+
+{
+  "_id": "54ac53b378fb81682d2a75fb",
+  "BrParc": 1627,
+  "PodbrParc": null,
+  "MatBrSK": null,
+  "Bonitet": null,
+  "VrZem": 7,
+  "MatBrNas": 704091,
+  "MatBrUli": 45362,
+  "NepID": 22043,
+  "BrPlana": "15",
+  "BrSkice": null,
+  "BrManuala": "3",
+  "GodSkMan": "2008",
+  "Povrsina": 936,
+  "BrojLN": 465,
+  "BrojPL": null,
+  "Geometry1": null,
+  "Geometry1_SK": null,
+  "Fakticko": true,
+  "changes": [
+    {
+      "_id": "5491746fe81292681887f922",
+      "TransID": 41,
+      "Tabela": 1,
+      "MatBrKO": 723070,
+      "TabelaID": 22043,
+      "VrstaZakljucavanja": "\"D\"",
+      "ElemPromID": 210,
+      "VrstaStanja": 2,
+      "NoviID": null,
+      "UserName": "\"dragicak\"",
+      "VremeUpisa": "4/2/2008 13:45:32\r",
+      "changelistId": 3000029
+    },
+    {
+      "_id": "5491746fe812926818881a1f",
+      "TransID": 1538,
+      "Tabela": 1,
+      "MatBrKO": 723070,
+      "TabelaID": 22043,
+      "VrstaZakljucavanja": "\"A\"",
+      "ElemPromID": 10881,
+      "VrstaStanja": 2,
+      "NoviID": 24053,
+      "UserName": "\"vesnar\"",
+      "VremeUpisa": "5/12/2010 11:25:02\r",
+      "changelistId": 3001490
+    }
+  ],
+  "parts": [
+    {
+      "_id": "54ac53ad78fb81682d2a2999",
+      "NepID": 9744,
+      "BrDelaParc": 1,
+      "Kultura": 360,
+      "Povrsina": 81,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "54917470e81292681888601f",
+          "TransID": 4699,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 9744,
+          "VrstaZakljucavanja": "\"U\"",
+          "ElemPromID": 30748,
+          "VrstaStanja": 2,
+          "NoviID": 24053,
+          "UserName": "\"vesnar\"",
+          "VremeUpisa": "2/28/2014 8:17:19\r",
+          "changelistId": 3004574
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a37f9",
+      "NepID": 22044,
+      "BrDelaParc": 2,
+      "Kultura": 360,
+      "Povrsina": 76,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "54917470e812926818886022",
+          "TransID": 4699,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 22044,
+          "VrstaZakljucavanja": "\"U\"",
+          "ElemPromID": 30751,
+          "VrstaStanja": 2,
+          "NoviID": 24053,
+          "UserName": "\"vesnar\"",
+          "VremeUpisa": "2/28/2014 8:17:37\r",
+          "changelistId": 3004574
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a37fa",
+      "NepID": 22045,
+      "BrDelaParc": 3,
+      "Kultura": 360,
+      "Povrsina": 34,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "54917470e812926818886025",
+          "TransID": 4699,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 22045,
+          "VrstaZakljucavanja": "\"U\"",
+          "ElemPromID": 30754,
+          "VrstaStanja": 2,
+          "NoviID": 24053,
+          "UserName": "\"vesnar\"",
+          "VremeUpisa": "2/28/2014 8:17:50\r",
+          "changelistId": 3004574
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a37fb",
+      "NepID": 22046,
+      "BrDelaParc": 4,
+      "Kultura": 360,
+      "Povrsina": 16,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "54917470e812926818886028",
+          "TransID": 4699,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 22046,
+          "VrstaZakljucavanja": "\"U\"",
+          "ElemPromID": 30757,
+          "VrstaStanja": 2,
+          "NoviID": 24053,
+          "UserName": "\"vesnar\"",
+          "VremeUpisa": "2/28/2014 8:18:12\r",
+          "changelistId": 3004574
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a37fc",
+      "NepID": 22047,
+      "BrDelaParc": 5,
+      "Kultura": 370,
+      "Povrsina": 729,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "5491746fe81292681887f926",
+          "TransID": 41,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 22047,
+          "VrstaZakljucavanja": "\"D\"",
+          "ElemPromID": 214,
+          "VrstaStanja": 2,
+          "NoviID": 22043,
+          "UserName": "\"dragicak\"",
+          "VremeUpisa": "4/2/2008 13:54:55\r",
+          "changelistId": 3000029
+        },
+        {
+          "_id": "54917470e812926818886029",
+          "TransID": 4699,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 22047,
+          "VrstaZakljucavanja": "\"A\"",
+          "ElemPromID": 30758,
+          "VrstaStanja": 2,
+          "NoviID": 27949,
+          "UserName": "\"vesnar\"",
+          "VremeUpisa": "2/28/2014 8:18:24\r",
+          "changelistId": 3004574
+        }
+      ]
+    }
+  ]
+}
+{
+  "_id": "54ac53b378fb81682d2a7897",
+  "BrParc": 1627,
+  "PodbrParc": null,
+  "MatBrSK": null,
+  "Bonitet": null,
+  "VrZem": 7,
+  "MatBrNas": 704091,
+  "MatBrUli": 45362,
+  "NepID": 24053,
+  "BrPlana": "15",
+  "BrSkice": null,
+  "BrManuala": "3",
+  "GodSkMan": "2008",
+  "Povrsina": 936,
+  "BrojLN": 2111,
+  "BrojPL": null,
+  "Geometry1": null,
+  "Geometry1_SK": null,
+  "Fakticko": true,
+  "changes": [
+    {
+      "_id": "5491746fe81292681888267d",
+      "TransID": 2091,
+      "Tabela": 1,
+      "MatBrKO": 723070,
+      "TabelaID": 24053,
+      "VrstaZakljucavanja": "\"O\"",
+      "ElemPromID": 14323,
+      "VrstaStanja": 2,
+      "NoviID": null,
+      "UserName": "\"vesnar\"",
+      "VremeUpisa": "12/9/2010 7:19:06\r",
+      "changelistId": 3002033
+    },
+    {
+      "_id": "54917470e81292681888601c",
+      "TransID": 4699,
+      "Tabela": 1,
+      "MatBrKO": 723070,
+      "TabelaID": 24053,
+      "VrstaZakljucavanja": "\"A\"",
+      "ElemPromID": 30745,
+      "VrstaStanja": 2,
+      "NoviID": 27948,
+      "UserName": "\"vesnar\"",
+      "VremeUpisa": "2/28/2014 8:16:46\r",
+      "changelistId": 3004574
+    }
+  ],
+  "parts": [
+    {
+      "_id": "54ac53ad78fb81682d2a2999",
+      "NepID": 9744,
+      "BrDelaParc": 1,
+      "Kultura": 360,
+      "Povrsina": 81,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "54917470e81292681888601f",
+          "TransID": 4699,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 9744,
+          "VrstaZakljucavanja": "\"U\"",
+          "ElemPromID": 30748,
+          "VrstaStanja": 2,
+          "NoviID": 24053,
+          "UserName": "\"vesnar\"",
+          "VremeUpisa": "2/28/2014 8:17:19\r",
+          "changelistId": 3004574
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a37f9",
+      "NepID": 22044,
+      "BrDelaParc": 2,
+      "Kultura": 360,
+      "Povrsina": 76,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "54917470e812926818886022",
+          "TransID": 4699,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 22044,
+          "VrstaZakljucavanja": "\"U\"",
+          "ElemPromID": 30751,
+          "VrstaStanja": 2,
+          "NoviID": 24053,
+          "UserName": "\"vesnar\"",
+          "VremeUpisa": "2/28/2014 8:17:37\r",
+          "changelistId": 3004574
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a37fa",
+      "NepID": 22045,
+      "BrDelaParc": 3,
+      "Kultura": 360,
+      "Povrsina": 34,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "54917470e812926818886025",
+          "TransID": 4699,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 22045,
+          "VrstaZakljucavanja": "\"U\"",
+          "ElemPromID": 30754,
+          "VrstaStanja": 2,
+          "NoviID": 24053,
+          "UserName": "\"vesnar\"",
+          "VremeUpisa": "2/28/2014 8:17:50\r",
+          "changelistId": 3004574
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a37fb",
+      "NepID": 22046,
+      "BrDelaParc": 4,
+      "Kultura": 360,
+      "Povrsina": 16,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "54917470e812926818886028",
+          "TransID": 4699,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 22046,
+          "VrstaZakljucavanja": "\"U\"",
+          "ElemPromID": 30757,
+          "VrstaStanja": 2,
+          "NoviID": 24053,
+          "UserName": "\"vesnar\"",
+          "VremeUpisa": "2/28/2014 8:18:12\r",
+          "changelistId": 3004574
+        }
+      ]
+    },
+    {
+      "_id": "54ac53ad78fb81682d2a37fc",
+      "NepID": 22047,
+      "BrDelaParc": 5,
+      "Kultura": 370,
+      "Povrsina": 729,
+      "Geometry1": null,
+      "Geometry1_SK": null,
+      "Fakticko": true,
+      "TKKod": null,
+      "changes": [
+        {
+          "_id": "5491746fe81292681887f926",
+          "TransID": 41,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 22047,
+          "VrstaZakljucavanja": "\"D\"",
+          "ElemPromID": 214,
+          "VrstaStanja": 2,
+          "NoviID": 22043,
+          "UserName": "\"dragicak\"",
+          "VremeUpisa": "4/2/2008 13:54:55\r",
+          "changelistId": 3000029
+        },
+        {
+          "_id": "54917470e812926818886029",
+          "TransID": 4699,
+          "Tabela": 1,
+          "MatBrKO": 723070,
+          "TabelaID": 22047,
+          "VrstaZakljucavanja": "\"A\"",
+          "ElemPromID": 30758,
+          "VrstaStanja": 2,
+          "NoviID": 27949,
+          "UserName": "\"vesnar\"",
+          "VremeUpisa": "2/28/2014 8:18:24\r",
+          "changelistId": 3004574
+        }
+      ]
+    }
+  ]
+}

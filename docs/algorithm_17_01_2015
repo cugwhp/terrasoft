@@ -1,0 +1,89 @@
+Kreiranje zapisa za KNZ
+
+Istorija nepokretnosti
+
+{
+    nepokretnost
+    promenaNastalo
+    promenaPrestalo
+}
+
+PRIMER 1
+
+deoparcele1_0: {
+    objekti: [
+        objekat1_0 //promena 1 A
+        objekat2_0
+        objekat1_1 //promena 3 O
+    ]
+}, //promena 2 A
+deoparcele1_1:{
+    objekti: [
+        objekat2_0
+        objekat1_1 //Promena 3 O
+    ]
+}
+
+Uzmemo objekat1_0
+ne postoji promena na delu parcele starija od promene na objektu
+knzPP.source.NepID == objekat1_0.parent.NepID
+uzimamo PARCELPARTID od knzPP
+
+Prelazimo na objekat1_1
+postoji promena na delu parcele koja je starija od promene na objektu
+knzPP.source.NepID == objekat1_1.parent.NepID OVO SE NE MOŽE KORISTITI
+možda bi važilo da se uzme samo poslednje pojavljivanje objekat1_1
+
+PRIMER 2
+
+deoparcele1_0: {
+    objekti: [
+        objekat1_0 //promena 1 A
+        objekat2_0
+    ]
+}, //promena 1 A
+deoparcele1_1:{
+    objekti: [
+        objekat2_0
+        objekat1_1 //Promena 2 O
+    ]
+}
+
+praćenje istorije za objekat1_0
+objekat1_0 -> objekat1_1
+i ovde bi važilo da se uzme samo poslednje pojavljivanje objekat1_1
+Npr. i za objekat2_0 bi važilo da se uzme poslednje pojavljivanje
+
+NAPOMENA: Treba videti šta u slučaju da se prilikom promene 1 A dođe do promene lista
+
+NOVI ALGORITAM
+
+1. Uzme se deoparcele1_1
+2. Za svaku promenu do promene tipa A //ili U
+    2.a. Kreira se folio i partparcelid
+3. Uzme se prvi objekat
+    3.a. Uzme se prva promena na objektu i prva promena na delu parcele //Pamtiti do koje se promene na delu parcele stiglo
+    3.b. Ako je promena O
+    3.c. Proveri se da li je promena starija od promene na delu parcele
+        Ako jeste
+            Kreirati folio za objekat i buildingid i dodeli se partparcelid //Voditi pored objekta evidenciju koja je sledeći NepID, označiti objekat kao obrađen
+            Uzeti sledeću promenu na objektu i vratiti se na korak 3.b.
+        Ako nije
+            Uzeti sledeću promenu na delu parcele i preći na korak 3.b. // Ako nema sledeće promene na delu parcele preći na sledeći objekat
+    3.d. Ako je promena A
+    3.e. Proveri se da li je promena starija od promene na delu parcele
+        Ako jeste
+            Preći na sledeću verziju objekta
+            Kreirati folio za objekat i buildingid i dodeli se partparcelid //označiti objekat kao obrađen
+            Vratiti se na korak 3.a.
+        Ako nije
+            Uzeti sledeću promenu na delu parcele i preći na korak 3.d. // Ako nema sledeće promene na delu parcele preći na sledeći objekat
+    3.f. Ako je  promena U
+    3.g. Proveri se da li je promena jednaka ili starija od promene na delu parcele
+         Ako jeste
+             Kreirati folio za objekat i buildingid i dodeli se partparcelid //označiti objekat kao obrađen
+             Preći na sledeći objekat i vratiti se na korak 3.a.
+         Ako nije
+             Uzeti sledeću promenu na delu parcele i preći na korak 3.f.
+4. Ako nema više objekata preći na sledeći deo parcele i preći na korak 2. Prilikom obrade objekata proveriti da li među objektima u
+    N_RS_BUILDING postoji već zapis sa tim vrednostima changelistid1 i NepID

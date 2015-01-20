@@ -1,0 +1,26 @@
+- Logovanje grešaka
+- Vezano za kancelarijsko poslovanje (pisarnicu) preko tabele Predmeti
+- Prvo prepisati šifarnike
+- Prepis mora da se završi za 2 dana
+
+JEDINSTVENA EVIDENCIJA
+- Konfiguracioni parametri:
+    - Driver za Oracle
+    - Konekcioni URL
+    - Username
+    - Password
+    - Putanja do DBF fajlova //Za prepis jedinstvene evidencije
+    - Naziv službe
+
+PISARNICA
+- Konfiguracioni parametri:
+    - Driver za Access
+    - Konekcioni URL
+    - Putanja do MDB fajlova
+
+Bile su spojene službe, ne mogu se razdvojiti pisarnice za opštine
+
+MDB fajlovi će biti otključani
+
+Najmanja celina za prepis je parcela, ako u toku prepisa dođe do greške cela parcela neće biti prepisana
+

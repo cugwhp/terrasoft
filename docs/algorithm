@@ -1,0 +1,64 @@
+za određenu parcelu uraditi sledeće:
+    //kreirati orcl verziju parcele i dodeliti mu jedinstveni id
+    za svaki deo parcele uraditi sledeće:
+        proveriti da li postoji istorija za taj deo parcele
+            proveriti da li je posledenja promena u istorijatu ima NoviID jednak NepID dela parcele
+        za svaku promenu na delu parcele uraditi sledeće:
+            ako je promena D, O ili U
+                formirati sledeću strukturu //promena tipa D (kreiranje) će uvek biti prva u nizu
+                {
+                    deoparcele
+                    promena
+                }
+            ako je promena A
+                preći na sledeći deo parcele
+
+pronaci istoriju nepokretnosti
+istorija ima oblik
+{
+    objekat
+    promena kojom je nastao
+    promena kojom je poništen
+}
+krenuti od prvog objekta (dela parcele, objekta ili stana)
+pratiti tok promena
+
+    ako nema nikakvih promena
+    dodati u istoriju
+    {
+        objekat
+        null
+        null
+    }
+
+    ako je prva promena D
+    dodati u istoriju
+    {
+        objekat
+        promena D
+        null
+    }
+    ako nema drugih promena završiti postupak
+    ako ima ...
+
+    ako je prva promena O ili U
+    dodati u istoriju
+    {
+        objekat
+        null
+        promena O ili U
+    }
+    ako nema više promena
+    dodati u istoriju
+    {
+        objekat
+        promena O ili U
+        null
+    }
+    ako ima
+    dodati u istoriju
+    {
+        objekat
+        promena O ili U
+        sledeća promena
+    }

@@ -1,0 +1,75 @@
+{
+    parcels: [
+        [
+            {p1, state 1, 2007},
+            {p1, state 2, 2010}
+        ]
+    ],
+    partsofparcels: [
+        [
+            {pp1, p1, state 3, 2008},
+            {pp1, p1, state 4, 2009}
+        ],
+        [
+            {pp2, p1, state 5, 2011}
+        ]
+    ],
+    buildings: [
+        [
+            {b1, pp1, state 6, 2007},
+            {b1, pp1, state 7, 2008},
+            {b1, pp1, state 8, 2010}
+        ],
+        [
+        ],
+        [
+        ]
+    ]
+}
+
+folio: [
+    {100, pp1, state 3, 1, null, null, 0},
+    {101, pp1, state 4, 1, null, null, 0},
+    {102, pp1, state 5, 1, null, null, 1},
+    {103, b1, state 6, 1, 1, null, 0},
+    {104, b1, state 7, 1, 1, null, 0},
+    {105, b1, state 8, 1, 1, null, 0},
+    {106, b1, state 9, 1, 1, null, 1}
+]
+
+p: [
+    1000, ...
+]
+
+pp: [
+    2000, 1000, null, 2008, 100
+    2001, 1000, 2008, 2009, 101
+    2002, 1000, 2009, null, 102
+]
+
+b: [
+    3000, 2000, null, 2007, 103 // promena na objektu
+    3001, 2000, 2007, 2008, 104 // promena na objektu pre promene na delu parcele
+    3002, 2001, 2008, 2008, 104 // promena na delu parcele
+    3003, 2002, 2008, 2009, 104 // promena na delu parcele
+    3004, 2002, 2009, 2010, 105 // promena na objektu
+    3005, 2002, 2010, null, 106 // aktivno stanje
+]
+
+uzeti deo parcele
+    pronaći promene na delu parcele
+
+    upisati stanje pre prve promene uid = 1, chid = null, chid1 = pdp1
+        za svaki objekat na delu parcele pre prve promene pronaći promene pre prve promene na delu parcele
+        upisati stanje pre prve promene na objektu uid = 1000, chid = null, chid1 = po1
+            za svaki deo parcele ....
+        ako ima više od jedne promene na objektu pre prve promene na delu parcele
+        upisati stanje pre druge promene uid = 1001, chid = po1, chid1 = po2
+            propagirati promenu na niži nivo
+        upisati stanje pre trece promene uid = 1002, chid = po2, chid1 = po3
+                propagirati promenu na niži nivo
+        ...
+    ako nema više promena na objektu koje su bile pre prve promene na delu parcele
+    upisati stanje pre druge promene na delu parcele uid = 2, chid = pdp1, chid1 = pdp2
+        ponoviti postupak za objekat
+
