@@ -1,0 +1,2 @@
+# terrasoft
+migracija GeodisKN baze
