@@ -75,13 +75,13 @@ PartsOfParcels.find = function(parcel) {
 
 PartsOfParcels.suid = 0;
 
-PartsOfParcels.createKnz = function(parcelPart, folio) {
+PartsOfParcels.createKnz = function(parcelPart, folio, parcelSuid) {
     var ha = Math.floor(parcelPart.Povrsina / 10000),
         a = Math.floor((parcelPart.Povrsina - ha * 10000) / 100),
         m = parcelPart.Povrsina - (ha * 10000 + a * 100);
 
     var knzPP = {
-        PARCELID: null,//parcelPart.parent.knz.SUID,
+        PARCELID: parcelSuid,
         NUMBER: parcelPart.parent.BrParc,
         NUMIDX: parcelPart.parent.PodbrParc,
         SUID: PartsOfParcels.suid++,
@@ -158,7 +158,7 @@ PartsOfParcels.collectChanges = function(partOfParcel) {
      return changes;
 };
 
-PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel) {
+PartsOfParcels.process = function(partOfParcel, changes, parcelSuid, folios, nRsPartOfParcel) {
     var chid = null;
     var chid1 = null;
     var rlp = 1;
@@ -198,7 +198,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
             };
             folio = RealEstates.createFolio(obj);
             folios.push(folio);
-            nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+            nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
             nRsPartOfParcel.push(nRsPoP);
         }
     } else {
@@ -235,7 +235,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
                             };
                             folio = RealEstates.createFolio(obj);
                             folios.push(folio);
-                            nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+                            nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
                             nRsPartOfParcel.push(nRsPoP);
                             advance = true;
                         } else if (change.VrstaZakljucavanja == '\"U\"') {//Promena je ukidanje, nepokretnost nije više aktivna, prekida se obrada promena
@@ -267,7 +267,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
                             };
                             folio = RealEstates.createFolio(obj);
                             folios.push(folio);
-                            nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+                            nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
                             nRsPartOfParcel.push(nRsPoP);
                             advance = false;
                         }
@@ -306,7 +306,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
                             };
                             folio = RealEstates.createFolio(obj);
                             folios.push(folio);
-                            nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+                            nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
                             nRsPartOfParcel.push(nRsPoP);
                             advance = true;
                         } else if (change.VrstaZakljucavanja == '\"A\"') {
@@ -327,7 +327,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
                             };
                             folio = RealEstates.createFolio(obj);
                             folios.push(folio);
-                            nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+                            nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
                             nRsPartOfParcel.push(nRsPoP);
                             advance = false;
                         }
@@ -350,7 +350,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
                         };
                         folio = RealEstates.createFolio(obj);
                         folios.push(folio);
-                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
                         nRsPartOfParcel.push(nRsPoP);
                         advance = true;
                     } else if (change.VrstaZakljucavanja == '\"O\"') {//Promena je ostajanje
@@ -368,7 +368,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
                         };
                         folio = RealEstates.createFolio(obj);
                         folios.push(folio);
-                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
                         nRsPartOfParcel.push(nRsPoP);
                         var obj = {
                             chid: change.changelistId,
@@ -384,7 +384,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
                         };
                         folio = RealEstates.createFolio(obj);
                         folios.push(folio);
-                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
                         nRsPartOfParcel.push(nRsPoP);
                         advance = true;
                     } else if (change.VrstaZakljucavanja == '\"U\"') {//Promena je ukidanje, nepokretnost nije više aktivna, prekida se obrada promena
@@ -402,7 +402,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
                         };
                         folio = RealEstates.createFolio(obj);
                         folios.push(folio);
-                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
                         nRsPartOfParcel.push(nRsPoP);
                         advance = false;
                     }
@@ -421,7 +421,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
                         };
                         folio = RealEstates.createFolio(obj);
                         folios.push(folio);
-                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
                         nRsPartOfParcel.push(nRsPoP);
                         var obj = {
                             chid: change.changelistId,
@@ -437,7 +437,7 @@ PartsOfParcels.process = function(partOfParcel, changes, folios, nRsPartOfParcel
                         };
                         folio = RealEstates.createFolio(obj);
                         folios.push(folio);
-                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio);
+                        nRsPoP = PartsOfParcels.createKnz(partOfParcel, folio, parcelSuid);
                         nRsPartOfParcel.push(nRsPoP);
                         advance = false;
                     }

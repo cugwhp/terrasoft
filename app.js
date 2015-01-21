@@ -253,9 +253,11 @@ Parcels.find(1391, null, result)// 1391, 773, 1625, 1627
             throw new Error('GREŠKA: Nije pronađena parcela 1391!');
         } else if(parcels.length == 0) {
             throw new Error('GREŠKA: Nije pronađena parcela 1391!');
-        } else {
-            RealEstates.sort(parcels);
         }
+        RealEstates.sort(parcels);
+        var nRsP = Parcels.createKnz(parcels[0]);
+        var parcelSuid = nRsP.SUID;
+        nRsParcel.push(nRsP);
         parcels.forEach(function(parcel) {
             console.log('PARCELA ' + parcel.NepID);
             var parts = parcel.parts;
@@ -263,7 +265,7 @@ Parcels.find(1391, null, result)// 1391, 773, 1625, 1627
             parts.forEach(function(part) {
                 console.log('DEO PARCELE ' + part.NepID);
                 var changes = PartsOfParcels.collectChanges(part);
-                PartsOfParcels.process(part, changes, ppFolios, nRsPartOfParcel);
+                PartsOfParcels.process(part, changes, parcelSuid, ppFolios, nRsPartOfParcel);
                 var buildings = part.buildings;
                 RealEstates.sort(buildings);
                 buildings.forEach(function(building) {
@@ -271,12 +273,18 @@ Parcels.find(1391, null, result)// 1391, 773, 1625, 1627
                     Buildings.process(building, nRsPartOfParcel, bFolios, nRsBuilding);
                 });
             });
-
         });
-        //console.log(ppFolios);
-        //console.log(nRsPartOfParcel);
-        console.log(bFolios);
-        console.log(nRsBuilding);
+        var nRsFinal = {
+            parcel: nRsParcel,
+            partOfParcel: nRsPartOfParcel,
+            building: nRsBuilding,
+            partOfBuilding: null,
+            partOfParcelFolio: ppFolios,
+            buildingFolio: bFolios,
+            partOfBuildingFolios: null
+        };
+        //Insert into Oracle
+
     })
     /*.then(function(parcels) {
         var buildings = [];

@@ -55,7 +55,7 @@ Parcels.find = function(parcelNum, parcelSubNum, result) {
 
 Parcels.suid = 0;
 
-Parcels.toKnz = function(p) {
+Parcels.createKnz = function(p) {
     var knzP = {
         SUID: Parcels.suid++,
         NUMBER: p.BrParc,

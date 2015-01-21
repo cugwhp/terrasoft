@@ -51,8 +51,8 @@
       <file leaf-file-name="PartsOfParcels.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/PartsOfParcels.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3085" max-vertical-offset="7820">
-              <caret line="217" column="63" selection-start-line="217" selection-start-column="63" selection-end-line="217" selection-end-column="63" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2792" max-vertical-offset="7820">
+              <caret line="439" column="89" selection-start-line="439" selection-start-column="89" selection-end-line="439" selection-end-column="89" />
               <folding />
             </state>
           </provider>
@@ -61,18 +61,18 @@
       <file leaf-file-name="Parcels.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Parcels.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="445" max-vertical-offset="1394">
-              <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="703" max-vertical-offset="1394">
+              <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4171" max-vertical-offset="8228">
-              <caret line="257" column="9" selection-start-line="257" selection-start-column="9" selection-end-line="275" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.5670628" vertical-offset="4358" max-vertical-offset="8364">
+              <caret line="276" column="24" selection-start-line="276" selection-start-column="24" selection-end-line="276" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -150,17 +150,17 @@
       <file leaf-file-name="Buildings.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/Buildings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3684" max-vertical-offset="8177">
-              <caret line="244" column="34" selection-start-line="244" selection-start-column="34" selection-end-line="244" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1462" max-vertical-offset="8177">
+              <caret line="89" column="34" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="parcela_1391_0.json" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="parcela_1391_0.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://D:/KNZ/test/parcela_1391_0.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5470693" vertical-offset="9873" max-vertical-offset="11339">
+            <state vertical-scroll-proportion="-33.5" vertical-offset="9873" max-vertical-offset="11339">
               <caret line="6666" column="8" selection-start-line="6666" selection-start-column="8" selection-end-line="6666" selection-end-column="8" />
               <folding>
                 <element signature="e#1077#32404#0" expanded="false" />
@@ -247,9 +247,9 @@
         <option value="$PROJECT_DIR$/app/models/Transactions.js" />
         <option value="$PROJECT_DIR$/app/models/PartsOfBuildings.js" />
         <option value="$PROJECT_DIR$/test.json" />
-        <option value="$PROJECT_DIR$/app/models/Parcels.js" />
         <option value="$PROJECT_DIR$/docs/algorithm_17_01_2015" />
         <option value="$PROJECT_DIR$/app/models/RealEstates.js" />
+        <option value="$PROJECT_DIR$/app/models/Parcels.js" />
         <option value="$PROJECT_DIR$/app/models/PartsOfParcels.js" />
         <option value="$PROJECT_DIR$/app/models/Buildings.js" />
         <option value="$PROJECT_DIR$/app.js" />
@@ -770,14 +770,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Parcels.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="445" max-vertical-offset="1394">
-          <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/KNZ/test/parcela_773_0.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.153846" vertical-offset="372" max-vertical-offset="1003">
@@ -806,30 +798,6 @@
           <folding>
             <element signature="e#6501#18369#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/PartsOfParcels.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3085" max-vertical-offset="7820">
-          <caret line="217" column="63" selection-start-line="217" selection-start-column="63" selection-end-line="217" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/Buildings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3684" max-vertical-offset="8177">
-          <caret line="244" column="34" selection-start-line="244" selection-start-column="34" selection-end-line="244" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4171" max-vertical-offset="8228">
-          <caret line="257" column="9" selection-start-line="257" selection-start-column="9" selection-end-line="275" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,7 +848,7 @@
     </entry>
     <entry file="file://D:/KNZ/test/parcela_1391_0.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5470693" vertical-offset="9873" max-vertical-offset="11339">
+        <state vertical-scroll-proportion="-33.5" vertical-offset="9873" max-vertical-offset="11339">
           <caret line="6666" column="8" selection-start-line="6666" selection-start-column="8" selection-end-line="6666" selection-end-column="8" />
           <folding>
             <element signature="e#1077#32404#0" expanded="false" />
@@ -927,6 +895,38 @@
             <element signature="e#197866#228094#0" expanded="false" />
             <element signature="e#232210#232430#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Parcels.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="703" max-vertical-offset="1394">
+          <caret line="62" column="24" selection-start-line="62" selection-start-column="24" selection-end-line="62" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/PartsOfParcels.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2792" max-vertical-offset="7820">
+          <caret line="439" column="89" selection-start-line="439" selection-start-column="89" selection-end-line="439" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/Buildings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1462" max-vertical-offset="8177">
+          <caret line="89" column="34" selection-start-line="89" selection-start-column="34" selection-end-line="89" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5670628" vertical-offset="4358" max-vertical-offset="8364">
+          <caret line="276" column="24" selection-start-line="276" selection-start-column="24" selection-end-line="276" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

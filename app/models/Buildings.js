@@ -87,7 +87,7 @@ Buildings.createKnz = function(building, folio, nRsPoP) {
         VOLUMEVALUE: null,
         FLOORNUMID: null,
         CHANGELISTID: folio.CHANGELISTID,
-        PARCELID: null,//building.parent.parent.knz.SUID,
+        PARCELID: nRsPoP.PARCELID,
         NUMBER: nRsPoP.NUMBER,
         NUMIDX: nRsPoP.NUMIDX,
         PARTPARCELID: nRsPoP.SUID,
