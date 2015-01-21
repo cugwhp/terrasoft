@@ -82,7 +82,7 @@ RealEstates.relationsToMongo = function() {
 };
 
 
-RealEstates.processHistory = function(realEstate) {
+/*RealEstates.processHistory = function(realEstate) {
     var reHistory = [[]];
     var i = 0;
     var newRe = true;
@@ -163,12 +163,12 @@ RealEstates.processHistory = function(realEstate) {
 
     return reHistory;
 
-};
+};*/
 
 RealEstates.uid = 0;
-RealEstates.rlp = 1;
-RealEstates.rlo = 1;
-RealEstates.rls = 1;
+//RealEstates.rlp = 1;
+//RealEstates.rlo = 1;
+//RealEstates.rls = 1;
 
 /**
  * obj: uid, chid, chid1, numberrf, numidxrf, active, text, rlp, changeType, currentNepID, nextNepID
@@ -472,5 +472,11 @@ RealEstates.createFolio = function(obj) {
         });
     }
 };*/
+
+RealEstates.sort = function(reArray) {
+    reArray.sort(function(a, b) {
+        return a.NepID - b.NepID;
+    });
+};
 
 module.exports = RealEstates;

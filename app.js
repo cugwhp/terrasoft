@@ -244,22 +244,39 @@ Parcels.find(1391, null, result)// 1391, 773, 1625, 1627
     .then(function() {
         var parcels = result;
         var parcel = parcels[0];
-        var part = parcel.parts[0];
-        var building = part.buildings[1];
-        var changes = PartsOfParcels.collectChanges(part);
+        var nRsParcel = [];
         var ppFolios = [];
         var nRsPartOfParcel = [];
         var bFolios = [];
         var nRsBuilding = [];
-        PartsOfParcels.process(part, changes, ppFolios, nRsPartOfParcel);
-        Buildings.process(building, nRsPartOfParcel, bFolios, nRsBuilding);
-        var building = part.buildings[0];
-        Buildings.process(building, nRsPartOfParcel, bFolios, nRsBuilding);
+        if(!parcels) {
+            throw new Error('GREŠKA: Nije pronađena parcela 1391!');
+        } else if(parcels.length == 0) {
+            throw new Error('GREŠKA: Nije pronađena parcela 1391!');
+        } else {
+            RealEstates.sort(parcels);
+        }
+        parcels.forEach(function(parcel) {
+            console.log('PARCELA ' + parcel.NepID);
+            var parts = parcel.parts;
+            RealEstates.sort(parts);
+            parts.forEach(function(part) {
+                console.log('DEO PARCELE ' + part.NepID);
+                var changes = PartsOfParcels.collectChanges(part);
+                PartsOfParcels.process(part, changes, ppFolios, nRsPartOfParcel);
+                var buildings = part.buildings;
+                RealEstates.sort(buildings);
+                buildings.forEach(function(building) {
+                    console.log('OBJEKAT ' + building.NepID);
+                    Buildings.process(building, nRsPartOfParcel, bFolios, nRsBuilding);
+                });
+            });
+
+        });
+        //console.log(ppFolios);
+        //console.log(nRsPartOfParcel);
         console.log(bFolios);
-        //console.log(nRsBuilding);
-        /*result.forEach(function(parcel) {
-            console.log(JSON.stringify(parcel, undefined, 2))
-        })*/
+        console.log(nRsBuilding);
     })
     /*.then(function(parcels) {
         var buildings = [];
