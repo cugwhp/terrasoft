@@ -240,11 +240,12 @@ var Buildings = require('./app/models/Buildings');
  * Konstruisanje redosleda promena na nepokretnostima
  */
 var result = [];
-Parcels.find(1391, null, result)// 1391, 773, 1625, 1627
+Parcels.find(1627, null, result)// 1391, 773, 1625, 1627
     .then(function() {
         var parcels = result;
         var parcel = parcels[0];
         var nRsParcel = [];
+        var pFolios = [];
         var ppFolios = [];
         var nRsPartOfParcel = [];
         var bFolios = [];
@@ -260,6 +261,12 @@ Parcels.find(1391, null, result)// 1391, 773, 1625, 1627
         nRsParcel.push(nRsP);
         parcels.forEach(function(parcel) {
             console.log('PARCELA ' + parcel.NepID);
+
+            Parcels.process(parcel, pFolios);
+
+            console.log(pFolios);
+
+            /*
             var parts = parcel.parts;
             RealEstates.sort(parts);
             parts.forEach(function(part) {
@@ -273,6 +280,7 @@ Parcels.find(1391, null, result)// 1391, 773, 1625, 1627
                     Buildings.process(building, nRsPartOfParcel, bFolios, nRsBuilding);
                 });
             });
+            */
         });
         var nRsFinal = {
             parcel: nRsParcel,

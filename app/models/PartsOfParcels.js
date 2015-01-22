@@ -158,6 +158,22 @@ PartsOfParcels.collectChanges = function(partOfParcel) {
      return changes;
 };
 
+/**
+ * @param partOfParcel
+ * @param changes
+ * @param parcelSuid
+ * @param folios
+ * @param nRsPartOfParcel
+ *
+ * TODO:
+ *      1. Korigovati algoritam tako da delovi parcele koji imaju istu kombinaciju promena imaju
+ *         i isti folio, odnosno UID. OBJAŠNJENJE: Svi delovi parcele UVEK idu istovremeno u promenu
+ *      2. Rešiti RLP, kad se povećava, kad ostaje isti, kad se resetuje.
+ *         RLP se povećava kad se pojavi novi folio sa datim brojem l.n.
+ *         RLP dobija vrednost 1 ako prethodno nema folia sa datim brojem l.n.
+ *         MORAJU se gledati svi prethodni foliji
+ *
+ */
 PartsOfParcels.process = function(partOfParcel, changes, parcelSuid, folios, nRsPartOfParcel) {
     var chid = null;
     var chid1 = null;
@@ -166,11 +182,8 @@ PartsOfParcels.process = function(partOfParcel, changes, parcelSuid, folios, nRs
     var folio;
     var nRsPoP;
     var oldNRsPoP;
-
-    //Treba proveriti da li je bilo prethodnih promena, odnosno da li je deo parcele već obrađivan
-        //Ako jeste naći poslednji uid, chid1, rlp, numidxrf
-        //Ako nije dodati uid++, rlp++, numidxrf = 1
     var oldFolio;
+
     for(var i = folios.length - 1; i > 0; i--) {
         if (partOfParcel.NepID == folios[i].nextNepID) {
             oldFolio = folios[i];
@@ -178,8 +191,6 @@ PartsOfParcels.process = function(partOfParcel, changes, parcelSuid, folios, nRs
             break;
         }
     }
-
-    //pronaći i stari nRsParcel
 
     if(changes.length == 0) {
         //Nema nikakvih promena na delu parcele
