@@ -125,8 +125,8 @@ Parcels.process = function(parcel, folios) {
                 text: '',
                 rlp: rlp,
                 changeType: null,
-                currentNepID: partOfParcel.NepID,
-                nextNepID: partOfParcel.NepID
+                currentNepID: parcel.NepID,
+                nextNepID: parcel.NepID
             };
             folio = RealEstates.createFolio(obj);
             folios.push(folio);
@@ -325,7 +325,7 @@ Parcels.process = function(parcel, folios) {
                         rlp: rlp,
                         changeType: change.VrstaZakljucavanja,
                         currentNepID: parcel.NepID,
-                        nextNepID: null
+                        nextNepID: parcel.NepID
                     };
                     folio = RealEstates.createFolio(obj);
                     folios.push(folio);

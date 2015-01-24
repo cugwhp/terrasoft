@@ -1,0 +1,153 @@
+[ { UID: 0,
+    CHANGELISTID: null,
+    CHANGELISTID1: 3000029,
+    COUNTRYID: 1,
+    CADDISTID: 46,
+    CADMUNID: 2026,
+    PARTYID: null,
+    NAME: null,
+    BEGINLIFESPANVERSION: null,
+    ENDLIFESPANVERSION: null,
+    NUMBERRF: 465,
+    NUMIDXRF: 1,
+    ACTIVE: 0,
+    TEXT: '',
+    JOURNALNUM: null,
+    RLP: 1,
+    RLO: null,
+    RLS: null,
+    changeType: '"U"',
+    currentNepID: 9751,
+    nextNepID: null },
+  { UID: 1,
+    CHANGELISTID: 3000029,
+    CHANGELISTID1: 3001490,
+    COUNTRYID: 1,
+    CADDISTID: 46,
+    CADMUNID: 2026,
+    PARTYID: null,
+    NAME: null,
+    BEGINLIFESPANVERSION: null,
+    ENDLIFESPANVERSION: null,
+    NUMBERRF: 465,
+    NUMIDXRF: 1,
+    ACTIVE: 0,
+    TEXT: '',
+    JOURNALNUM: null,
+    RLP: 2,
+    RLO: null,
+    RLS: null,
+    changeType: '"D"',
+    currentNepID: 22043,
+    nextNepID: 22043 },
+  { UID: 2,
+    CHANGELISTID: 3001490,
+    CHANGELISTID1: 3002033,
+    COUNTRYID: 1,
+    CADDISTID: 46,
+    CADMUNID: 2026,
+    PARTYID: null,
+    NAME: null,
+    BEGINLIFESPANVERSION: null,
+    ENDLIFESPANVERSION: null,
+    NUMBERRF: 465,
+    NUMIDXRF: NaN,
+    ACTIVE: 0,
+    TEXT: '',
+    JOURNALNUM: null,
+    RLP: 3,
+    RLO: null,
+    RLS: null,
+    changeType: '"A"',
+    currentNepID: 22043,
+    nextNepID: 24053 },
+  { UID: 3,
+    CHANGELISTID: 3002033,
+    CHANGELISTID1: 3004574,
+    COUNTRYID: 1,
+    CADDISTID: 46,
+    CADMUNID: 2026,
+    PARTYID: null,
+    NAME: null,
+    BEGINLIFESPANVERSION: null,
+    ENDLIFESPANVERSION: null,
+    NUMBERRF: 2111,
+    NUMIDXRF: NaN,
+    ACTIVE: 1,
+    TEXT: '',
+    JOURNALNUM: null,
+    RLP: 1,
+    RLO: null,
+    RLS: null,
+    changeType: '"O"',
+    currentNepID: 24053,
+    nextNepID: 24053,
+    active: 0 },
+  { UID: 4,
+    CHANGELISTID: 3004574,
+    CHANGELISTID1: null,
+    COUNTRYID: 1,
+    CADDISTID: 46,
+    CADMUNID: 2026,
+    PARTYID: null,
+    NAME: null,
+    BEGINLIFESPANVERSION: null,
+    ENDLIFESPANVERSION: null,
+    NUMBERRF: 2111,
+    NUMIDXRF: NaN,
+    ACTIVE: 0,
+    TEXT: '',
+    JOURNALNUM: null,
+    RLP: 1,
+    RLO: null,
+    RLS: null,
+    changeType: '"A"',
+    currentNepID: 24053,
+    nextNepID: 27948 } ]
+
+/* ----------------------------------*/
+
+deo: 9758
+parcela: 9751
+folio: 0U
+
+/* ----------------------------------*/
+
+deo: 9752
+parcela: 9751
+br: 1
+folio: 0A
+
+deo: 22044
+br: 2
+parcela: 22043
+folio: 1D 2A
+
+deo: 22044
+br: 2
+parcela: 24053
+folio: 3U
+
+/* ----------------------------------*/
+
+deo: 22047
+br: 5
+parcela: 22043
+folio: 1D
+
+deo: 22047
+br: 5
+parcela: 22043
+folio: 2A
+
+deo: 22047
+br: 5
+parcela: 24053
+folio: 3A
+
+deo: 27948
+br: 6
+parcela: 27946
+folio: 4A
+
+Deluje da bi moglo da se prati po nextNepID

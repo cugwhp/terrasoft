@@ -242,6 +242,15 @@ var Buildings = require('./app/models/Buildings');
 var result = [];
 Parcels.find(1627, null, result)// 1391, 773, 1625, 1627
     .then(function() {
+
+        console.log(JSON.stringify(result, function(key, value) {
+            if(key === 'parent') {
+                return null;
+            } else {
+                return value;
+            }
+        }, 2));
+
         var parcels = result;
         var parcel = parcels[0];
         var nRsParcel = [];
@@ -260,28 +269,28 @@ Parcels.find(1627, null, result)// 1391, 773, 1625, 1627
         var parcelSuid = nRsP.SUID;
         nRsParcel.push(nRsP);
         parcels.forEach(function(parcel) {
-            console.log('PARCELA ' + parcel.NepID);
+            //console.log('PARCELA ' + parcel.NepID);
 
             Parcels.process(parcel, pFolios);
 
-            console.log(pFolios);
+            //console.log(pFolios);
 
-            /*
+
             var parts = parcel.parts;
             RealEstates.sort(parts);
             parts.forEach(function(part) {
                 console.log('DEO PARCELE ' + part.NepID);
-                var changes = PartsOfParcels.collectChanges(part);
-                PartsOfParcels.process(part, changes, parcelSuid, ppFolios, nRsPartOfParcel);
+                //var changes = PartsOfParcels.collectChanges(part);
+                PartsOfParcels.process(part, pFolios, parcelSuid, nRsPartOfParcel);
                 var buildings = part.buildings;
                 RealEstates.sort(buildings);
                 buildings.forEach(function(building) {
-                    console.log('OBJEKAT ' + building.NepID);
+                    //console.log('OBJEKAT ' + building.NepID);
                     Buildings.process(building, nRsPartOfParcel, bFolios, nRsBuilding);
                 });
             });
-            */
         });
+        console.log(JSON.stringify(bFolios));
         var nRsFinal = {
             parcel: nRsParcel,
             partOfParcel: nRsPartOfParcel,

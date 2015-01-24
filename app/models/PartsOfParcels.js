@@ -75,7 +75,7 @@ PartsOfParcels.find = function(parcel) {
 
 PartsOfParcels.suid = 0;
 
-PartsOfParcels.createKnz = function(parcelPart, folio, parcelSuid) {
+PartsOfParcels.createKnz = function(parcelPart, folio, parcelSuid, historyInfo) {
     var ha = Math.floor(parcelPart.Povrsina / 10000),
         a = Math.floor((parcelPart.Povrsina - ha * 10000) / 100),
         m = parcelPart.Povrsina - (ha * 10000 + a * 100);
@@ -116,15 +116,16 @@ PartsOfParcels.createKnz = function(parcelPart, folio, parcelSuid) {
         YEAR: parcelPart.parent.GodSkMan,
         SPECPURPOSEID: null,
         CADASTRALINCOME: null,
-        changeType: folio.changeType,
-        currentNepID: folio.currentNepID,
-        nextNepID: folio.nextNepID
+        changeType: historyInfo.changeType,
+        currentNepID: historyInfo.currentNepID,
+        nextNepID: historyInfo.nextNepID
     };
     //knzPP.source = parcelPart; Mislim da nece trebati
     return knzPP;
 };
 
-PartsOfParcels.collectChanges = function(partOfParcel) {
+//OVO NEĆE BITI POTREBNO JER PROMENE MORAJU BITI ISTE KAO I NA PARCELI
+/*PartsOfParcels.collectChanges = function(partOfParcel) {
     //Formiranje svih promena za deo parcele, uzimaju se i promene na parceli
     var changes = [];
     var parcelChanges = partOfParcel.parent.changes;
@@ -157,25 +158,65 @@ PartsOfParcels.collectChanges = function(partOfParcel) {
     }
      return changes;
 };
+*/
 
 /**
- * @param partOfParcel
- * @param changes
- * @param parcelSuid
- * @param folios
- * @param nRsPartOfParcel
+ * @param partOfParcel deo parcele koji se obrađuje
+ * @param parcelFolios foliji za parcelu, promena na delu parcele mor da odgovara bar jednom foliu
+ * @param nRsPartOfParcel migrirani unosi za deo parcele
  *
- * TODO:
- *      1. Korigovati algoritam tako da delovi parcele koji imaju istu kombinaciju promena imaju
- *         i isti folio, odnosno UID. OBJAŠNJENJE: Svi delovi parcele UVEK idu istovremeno u promenu
- *      2. Rešiti RLP, kad se povećava, kad ostaje isti, kad se resetuje.
- *         RLP se povećava kad se pojavi novi folio sa datim brojem l.n.
- *         RLP dobija vrednost 1 ako prethodno nema folia sa datim brojem l.n.
- *         MORAJU se gledati svi prethodni foliji
- *
+ * ALGORITAM:
+ * 1. Ako na delu parcele nema promena onda uzima sve folie od parcele gde je NepID == parent.NepID
+ * 2. Ako ima promena poredi tipove promena
  */
-PartsOfParcels.process = function(partOfParcel, changes, parcelSuid, folios, nRsPartOfParcel) {
-    var chid = null;
+PartsOfParcels.process = function(partOfParcel, parcelFolios, parcelSuid, nRsPartOfParcel) {
+    var folios = [];
+    var nRsPoP;
+    //console.log(partOfParcel);
+    var changes = partOfParcel.changes ? partOfParcel.changes : [];
+    parcelFolios.forEach(function(pFolio) {
+        if (pFolio.nextNepID == partOfParcel.parent.NepID) {
+            //Kreirati nRsPartOfParcel i postaviti currentNepID, nextNepID
+            var resultChange;
+            changes.every(function(change) {
+                //console.log(pFolio);
+                //console.log(change);
+                if(pFolio.CHANGELISTID1 && pFolio.CHANGELISTID1 == change.changelistId) {
+                    resultChange = change;
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            if(resultChange) {
+                var nextNepID = resultChange.NoviID;
+                if(resultChange.VrstaZakljucavanja == '\"O\"' || resultChange.VrstaZakljucavanja == '\"D\"') {
+                    nextNepID = partOfParcel.NepID;
+                } else if(resultChange.VrstaZakljucavanja == '\"U\"') {
+                    nextNepID = null;
+                }
+                var historyInfo = {
+                    changeType: resultChange.VrstaZakljucavanja,
+                    currentNepID: partOfParcel.NepID,
+                    nextNepID: nextNepID
+                };
+                nRsPoP = PartsOfParcels.createKnz(partOfParcel, pFolio, parcelSuid, historyInfo);
+                nRsPartOfParcel.push(nRsPoP);
+            } else {
+                var historyInfo = {
+                    changeType: pFolio.changeType,
+                    currentNepID: partOfParcel.NepID,
+                    nextNepID: partOfParcel.NepID
+                };
+                nRsPoP = PartsOfParcels.createKnz(partOfParcel, pFolio, parcelSuid, historyInfo);
+                nRsPartOfParcel.push(nRsPoP);
+            }
+        }
+    });
+
+
+    //Stari kod koji je pogrešan
+/*    var chid = null;
     var chid1 = null;
     var rlp = 1;
     var numidxrf = 1;
@@ -459,7 +500,7 @@ PartsOfParcels.process = function(partOfParcel, changes, parcelSuid, folios, nRs
             }
             return advance;
         });
-    }
+    }*/
 };
 
 module.exports = PartsOfParcels;

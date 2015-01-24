@@ -207,6 +207,12 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
         }
     } else {
         changes.every(function (change) {
+            //console.log('\nPROMENA: ');
+            //console.log(change);
+
+            //console.log('\nSTARI FOLIO: ');
+            //console.log(oldFolio);
+
             var advance = true;
 
             //Tražimo deo parcele na kom je objekat
@@ -214,7 +220,7 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
             if(nRsPoP) {
 
                 //Provera da li je promena već obrađena
-                if (oldFolio && change.changelistId <= oldFolio.CHANGELISTID1) {
+                if (oldFolio && change.changelistId < oldFolio.CHANGELISTID1) {
                     advance = true;
                 } else {
                     if (oldFolio) { //Postoji staro stanje
@@ -228,7 +234,7 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
                                 oldFolio.CHANGELISTID1 = change.changelistId;
                                 oldFolio.nextNepID = building.NepID;
                                 oldNRsB.CHANGELISTID1 = change.changelistId;
-                                oldNRsB.nextNepID = building.NepID;
+                                //oldNRsB.nextNepID = building.NepID;
                                 oldFolio.ACTIVE = 0;
                                 var obj = {
                                     chid: change.changelistId,
@@ -254,15 +260,15 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
                                 oldFolio.nextNepID = null;
                                 oldFolio.ACTIVE = 0;
                                 oldNRsB.CHANGELISTID1 = change.changelistId;
-                                oldNRsB.changeType = change.VrstaZakljucavanja;
-                                oldNRsB.nextNepID = null;
+                                //oldNRsB.changeType = change.VrstaZakljucavanja;
+                                //oldNRsB.nextNepID = null;
                                 advance = false;
                             } else if (change.VrstaZakljucavanja == '\"A\"') {//Promena je izmena, prekida se obrada promena
                                 oldFolio.CHANGELISTID1 = change.changelistId;
                                 oldFolio.nextNepID = building.NepID;
                                 oldFolio.ACTIVE = 0;
                                 oldNRsB.CHANGELISTID1 = change.changelistId;
-                                oldNRsB.nextNepID = building.NepID;
+                                //oldNRsB.nextNepID = building.NepID;
                                 var obj = {
                                     chid: change.changelistId,
                                     chid1: null,
@@ -291,15 +297,20 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
                                 console.log('UPOZORENJE: Pokušaj dodavanja, a već postoje prethodna stanja!');
                                 advance = false;
                             } else if (change.VrstaZakljucavanja == '\"U\"') {
+                                console.log('\nSTARI FOLIO: ');
+                                console.log(oldFolio);
                                 oldFolio.CHANGELISTID1 = change.changelistId;
                                 oldFolio.changeType = change.VrstaZakljucavanja;
-                                oldFolio.nextNepID = null;
+                                oldFolio.nextNepID = building.NepID;
                                 oldFolio.ACTIVE = 0;
                                 oldNRsB.CHANGELISTID1 = change.changelistId;
-                                oldNRsB.changeType = change.VrstaZakljucavanja;
-                                oldNRsB.nextNepID = null;
+                                //oldNRsB.changeType = change.VrstaZakljucavanja;
+                                //oldNRsB.nextNepID = null;
                                 advance = false;
+                                console.log('\nSTARI FOLIO: ');
+                                console.log(oldFolio);
                             } else if (change.VrstaZakljucavanja == '\"O\"') {
+
                                 oldFolio.ACTIVE = 0;
                                 oldFolio.CHANGELISTID1 = change.changelistId;
                                 oldNRsB.CHANGELISTID1 = change.changelistId;
@@ -321,6 +332,7 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
                                 nRsB = Buildings.createKnz(building, folio, nRsPoP);
                                 nRsBuilding.push(nRsB);
                                 advance = true;
+
                             } else if (change.VrstaZakljucavanja == '\"A\"') {
                                 oldFolio.ACTIVE = 0;
                                 oldFolio.CHANGELISTID1 = change.changelistId;
@@ -461,6 +473,10 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
                         }
 
                     }
+
+                    //console.log('\nNOVI FOLIO: ');
+                    //console.log(folio);
+
                     oldFolio = folio;
                     oldNRsB = nRsB;
                 }
