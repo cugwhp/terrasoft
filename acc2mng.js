@@ -3,6 +3,7 @@ var Parcels = require('./app/models/Parcels');
 var PartsOfParcels = require('./app/models/PartsOfParcels');
 var Buildings = require('./app/models/Buildings');
 var PartsOfBuildings = require('./app/models/PartsOfBuildings');
+var Restrictions = require('./app/models/Restrictions');
 
 function realEstatesToMongo() {
     RealEstates.clear()
@@ -31,6 +32,11 @@ function realEstatesToMongo() {
 
     PartsOfBuildings.clear()
         .then(PartsOfBuildings.toMongo)
+        .catch(console.log)
+        .done();
+
+    Restrictions.clear()
+        .then(Restrictions.toMongo())
         .catch(console.log)
         .done();
 }

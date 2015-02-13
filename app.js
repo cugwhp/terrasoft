@@ -18,7 +18,8 @@ var collections = [
     'elpromene',
     'odnosinep',
     'tereti',
-    'predmeti'
+    'predmeti',
+    'lica'
 ];
 
 var db = pmongo.connect(uristring, collections);
@@ -214,33 +215,46 @@ var elChan = new ElementaryChanges();
 //trans.read();
 
 /**
- * Učitavanje nepokretnosti iznova jer se zapisi u MongoDB menjaju tokom obrade
+ * Učitavanje nepokretnosti i tereta iznova jer se zapisi u MongoDB menjaju tokom obrade
  */
 
 /*var realEstatesToMongo = require('./acc2mng');
 realEstatesToMongo();*/
 
+
 /**
  * Rekonstruisanje istorije promena prema istorijatu predmeta
  */
+
 
 /*Evidentions.load()
     .then(function(evidentions) {
         return Evidentions.process(evidentions);
     })
     .then(function() {
-        console.log('Rekonstruisana je istorija promena')
+        //fs.writeFileSync('C:\\node\\knz\\n_rs_changelist.sql', Transactions.insertStatements);
+        console.log('Rekonstruisana je istorija promena');
     })
     .done();*/
+
+/*var ChangeTypes = require('./app/models/ChangeTypes');
+var changeTypesCodeList = ChangeTypes.createInsertStatements('KNZ_VOZD.N_CL_CHANGETYPE');
+fs.writeFileSync('C:\\node\\knz\\n_cl_changetype.sql', changeTypesCodeList);*/
 
 var Parcels = require('./app/models/Parcels');
 var PartsOfParcels = require('./app/models/PartsOfParcels');
 var Buildings = require('./app/models/Buildings');
+var PartsOfBuildings = require('./app/models/PartsOfBuildings');
+var Restrictions = require('./app/models/Restrictions');
+var Utilities = require('./app/models/Utilities');
 /**
  * Konstruisanje redosleda promena na nepokretnostima
  */
 var result = [];
-Parcels.find(1627, null, result)// 1391, 773, 1625, 1627
+var parcelNumber = 1627;// 1391, 773, 1625, 1627
+var parcelSubNumber = null;
+
+Parcels.find(parcelNumber, parcelSubNumber, result)
     .then(function() {
 
         console.log(JSON.stringify(result, function(key, value) {
@@ -259,6 +273,8 @@ Parcels.find(1627, null, result)// 1391, 773, 1625, 1627
         var nRsPartOfParcel = [];
         var bFolios = [];
         var nRsBuilding = [];
+        var pbFolios = [];
+        var nRsPartOfBuilding = [];
         if(!parcels) {
             throw new Error('GREŠKA: Nije pronađena parcela 1391!');
         } else if(parcels.length == 0) {
@@ -269,39 +285,39 @@ Parcels.find(1627, null, result)// 1391, 773, 1625, 1627
         var parcelSuid = nRsP.SUID;
         nRsParcel.push(nRsP);
         parcels.forEach(function(parcel) {
-            //console.log('PARCELA ' + parcel.NepID);
-
-            Parcels.process(parcel, pFolios);
-
-            //console.log(pFolios);
-
-
+            console.log('PARCELA ' + parcel.NepID);
+            Parcels.process(parcel, pFolios, nRsP);
             var parts = parcel.parts;
             RealEstates.sort(parts);
             parts.forEach(function(part) {
                 console.log('DEO PARCELE ' + part.NepID);
-                //var changes = PartsOfParcels.collectChanges(part);
                 PartsOfParcels.process(part, pFolios, parcelSuid, nRsPartOfParcel);
                 var buildings = part.buildings;
                 RealEstates.sort(buildings);
                 buildings.forEach(function(building) {
-                    //console.log('OBJEKAT ' + building.NepID);
+                    console.log('OBJEKAT ' + building.NepID);
                     Buildings.process(building, nRsPartOfParcel, bFolios, nRsBuilding);
+
+                    var partsOfBuilding = building.parts;
+
+                    RealEstates.sort(partsOfBuilding);
+
+                    partsOfBuilding.forEach(function(partOfBuilding) {
+                        console.log('DEO OBJEKTA ' + partOfBuilding.NepID);
+                        PartsOfBuildings.process(partOfBuilding, nRsBuilding, pbFolios, nRsPartOfBuilding);
+                    });
                 });
             });
         });
-        console.log(JSON.stringify(bFolios));
-        var nRsFinal = {
-            parcel: nRsParcel,
-            partOfParcel: nRsPartOfParcel,
-            building: nRsBuilding,
-            partOfBuilding: null,
-            partOfParcelFolio: ppFolios,
-            buildingFolio: bFolios,
-            partOfBuildingFolios: null
-        };
-        //Insert into Oracle
+        //console.log(JSON.stringify(pbFolios));
 
+        var allFolios = pFolios.concat(bFolios, pbFolios);
+        //fs.appendFileSync('C:\\node\\knz\\folios' + parcelNumber + '_' + parcelSubNumber + '.sql', Utilities.createInsertStatements('KNZ_VOZD.N_RS_REALESTATEFOLIO', allFolios));
+        //fs.appendFileSync('C:\\node\\knz\\parcels' + parcelNumber + '_' + parcelSubNumber + '.sql', Utilities.createInsertStatements('KNZ_VOZD.N_RS_PARCEL', nRsParcel));
+        //fs.appendFileSync('C:\\node\\knz\\parts' + parcelNumber + '_' + parcelSubNumber + '.sql', Utilities.createInsertStatements('KNZ_VOZD.N_RS_PARTOFPARCEL', nRsPartOfParcel));
+        //fs.appendFileSync('C:\\node\\knz\\buildings' + parcelNumber + '_' + parcelSubNumber + '.sql', Utilities.createInsertStatements('KNZ_VOZD.N_RS_BUILDING', nRsBuilding));
+        //fs.writeFileSync('C:\\node\\knz\\partsbuildings' + parcelNumber + '_' + parcelSubNumber + '.sql', Utilities.createInsertStatements('KNZ_VOZD.N_RS_PARTOFBUILDING', nRsPartOfBuilding));
+        fs.writeFileSync('C:\\node\\knz\\n_rs_restrictions.sql', Utilities.createInsertStatements('KNZ_VOZD.N_RS_RESTRICTIONS', Restrictions.nRsRestrictions));
     })
     /*.then(function(parcels) {
         var buildings = [];

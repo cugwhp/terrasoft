@@ -3,6 +3,7 @@ var Q = require('q');
 var app = require('../../app');
 var Buildings = require('./Buildings');
 var RealEstates = require('./RealEstates');
+var Restrictions = require('./Restrictions');
 
 function PartsOfParcels() {
 }
@@ -18,8 +19,7 @@ PartsOfParcels.toMongo = function() {
     var mongo = app.db;
     conn.query('SELECT * FROM DEOPARC')
         .on('done', function(data) {
-            this.data = data.records;
-            mongo.deloviparcela.insert(this.data)
+            mongo.deloviparcela.insert(data.records)
                 .then(function() {
                     console.log('Učitana tabela DEOPARC');
                 })
@@ -49,7 +49,8 @@ PartsOfParcels.find = function(parcel) {
             return pparts.reduce(function(promise, ppart) {
                 return promise.then(function() {
                     ppart.parent = parcel;
-                    return Buildings.find(ppart);
+                    //return Buildings.find(ppart);
+                    return Q.all([Buildings.find(ppart), Restrictions.find(ppart)]);
                 });
             }, Q([]));
         });
@@ -118,7 +119,8 @@ PartsOfParcels.createKnz = function(parcelPart, folio, parcelSuid, historyInfo) 
         CADASTRALINCOME: null,
         changeType: historyInfo.changeType,
         currentNepID: historyInfo.currentNepID,
-        nextNepID: historyInfo.nextNepID
+        nextNepID: historyInfo.nextNepID,
+        folio: folio
     };
     //knzPP.source = parcelPart; Mislim da nece trebati
     return knzPP;

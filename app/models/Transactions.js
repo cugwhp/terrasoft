@@ -2,6 +2,7 @@ var Q = require('q');
 var app = require('../../app');
 var ElementaryChanges = require('./ElementaryChanges');
 var cm = require('./cm');
+var Utilities = require('./Utilities');
 
 function Transactions() {
 }
@@ -43,18 +44,20 @@ Transactions.processTransaction = function(transaction) {
         .then(function(changes) { // elementare promene se ne obradjuju po nekom definisanom redosledu
             transaction.changes = changes;
             var changelist = Transactions.toKnzChangelist(transaction);
+            //Transactions.insertStatements += Utilities.createInsertStatements('KNZ_VOZD.N_RS_CHANGELIST', [changelist]);
             return ElementaryChanges.process(changes, changelist.ID);
         });
 };
 
 Transactions.id = 3000000;
 
+Transactions.insertStatements = '';
+
 Transactions.toKnzChangelist = function(transaction) {
     var knzChange = {
         ACTIVE: 3,
         CADDISTID: cm.cadDistId,
         CADMUNID: cm.cadMunId,
-        CHANGES: null,
         CHANGETYPEID: transaction.VrstaPromene, //SELECT ...
         CLASS: null,
         COUNTRYID: cm.countryId,

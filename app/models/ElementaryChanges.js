@@ -18,13 +18,13 @@ ElementaryChanges.process = function(changes, changelistId) {
 ElementaryChanges.processChange = function(change) {
     var table = change.Tabela;
     if(table == 1) {
-        return ElementaryChanges.processChangeOnRealEstate(change)
+        return ElementaryChanges.processChangeOnRealEstate(change);
     } else if(table == 2) {
-        return Q()//this.processChangeOnLegalRelations(change)
+        return Q();//this.processChangeOnLegalRelations(change)
     } else if(table == 3) {
-        return Q()//this.processChangeOnRestrictions(change)
-    } else if(table == 3) {
-        return Q()//this.processChangeOnPersons(change)
+        return ElementaryChanges.processChangeOnRestriction(change);
+    } else if(table == 4) {
+        return Q();//this.processChangeOnPersons(change)
     }
 };
 
@@ -57,5 +57,19 @@ ElementaryChanges.processChangeOnRealEstate = function(change) {
             }
         });
 };
+
+ElementaryChanges.processChangeOnRestriction = function(change) {
+    var mongo = app.db;
+
+    console.log('Promena ' + change.ElemPromID + ', Transakcija ' + change.TransID);
+    return mongo.tereti.findOne({TerID: change.TabelaID})
+        .then(function(restriction) {
+            console.log(restriction);
+            return mongo.tereti.findAndModify({
+                query: {TerID: restriction.TerID},
+                update: {$push: {changes: change}}
+            })
+        });
+}
 
 module.exports = ElementaryChanges;
