@@ -7,6 +7,8 @@ var PartsOfParcels = require('./PartsOfParcels');
 var RealEstates = require('./RealEstates');
 var Restrictions = require('./Restrictions');
 var RealEstateTypes = require('./RealEstateTypes');
+var Ownership = require('./Ownership');
+var Utilities = require('./Utilities');
 
 var cm = require('./cm');
 
@@ -46,12 +48,15 @@ Parcels.find = function(parcelNum, parcelSubNum, result) {
     if(parcelSubNum) {
         condition.PodbrParc = parcelSubNum;
     }
+
+    console.log(parcelNum + ' / ' + parcelSubNum);
+
     return app.db.parcele.find({$query: condition, $orderBy:{NepID: 1}}).toArray()
         .then(function(parcels) {
             return parcels.reduce(function(promise, parcel) {
                 return promise.then(function() {
                     result.push(parcel);
-                    return Q.all([PartsOfParcels.find(parcel), Restrictions.find(parcel)]);
+                    return Q.all([PartsOfParcels.find(parcel), Restrictions.find(parcel), Ownership.find(parcel)]);
                 });
             }, Q([]));
         });
@@ -61,9 +66,9 @@ Parcels.suid = 0;
 
 Parcels.createKnz = function(p) {
     var knzP = {
-        SUID: Parcels.suid++,
+        SUID: Utilities.createId(Parcels.suid),
         NUMBER: p.BrParc,
-        NUMIDX: p.PodbrParc,
+        NUMIDX: p.PodbrParc ? p.PodbrParc : 0,
         ADDRESSID: null,
         DIMENSIONID: null,
         VOLUMEVALUEID: null,
@@ -75,6 +80,7 @@ Parcels.createKnz = function(p) {
         BEGINLIFESPANVERSION: null,
         ENDLIFESPANVERSION: null
     };
+    Parcels.suid += 1;
     return knzP;
 };
 
@@ -99,6 +105,9 @@ Parcels.hashMap = new HashMap();
  */
 Parcels.findrlpAndNumidx = function(numberrf) {
     'use strict';
+
+    console.log(numberrf);
+
     var result = {};
     if(Parcels.hashMap.has(numberrf)) {
         var values = Parcels.hashMap.get(numberrf);
@@ -131,6 +140,9 @@ Parcels.findrlpAndNumidx = function(numberrf) {
         Parcels.hashMap.set(numberrf, [result]);
     }
     Parcels.previosNumberrf = numberrf;
+
+    console.log(result);
+
     return result;
 };
 
@@ -144,7 +156,7 @@ Parcels.process = function(parcel, folios, nRsP) {
     var folio;
 
     //pronaći odgovarajući RLP i NUMIDXRF
-    var rlpAndNumidx = Parcels.findrlpAndNumidx(parcel.BrojLN);
+    var rlpAndNumidx = Parcels.findrlpAndNumidx(parcel.BrojLN); //kada ide ukidanje, a postojao je prethodni folio ne treba povećavati numidxrf
 
     var changes = parcel.changes ? parcel.changes : [];
 
@@ -173,9 +185,11 @@ Parcels.process = function(parcel, folios, nRsP) {
             folios.push(folio);
             nRsP.folio = folio;
             Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
+
+            Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
         }
     } else {
-        changes.every(function (change) {//Mislim da ću promeniti na forEach jer će se uvek gledati svaka promena?
+        changes.every(function (change) {
             var advance = true;
 
             if (oldFolio) { //Postoji staro stanje
@@ -187,7 +201,7 @@ Parcels.process = function(parcel, folios, nRsP) {
                         advance = false;
                     } else if (change.VrstaZakljucavanja == '\"O\"') {//Promena je ostajanje
                         oldFolio.CHANGELISTID1 = change.changelistId;
-                        oldFolio.nextNepID = partOfParcel.NepID;
+                        oldFolio.nextNepID = parcel.NepID;
                         oldFolio.ACTIVE = 0;
                         var obj = {
                             chid: change.changelistId,
@@ -207,12 +221,15 @@ Parcels.process = function(parcel, folios, nRsP) {
                         nRsP.folio = folio;
                         Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
 
+                        Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
+
                         rlpAndNumidx = Parcels.findrlpAndNumidx(parcel.BrojLN);
 
                         advance = true;
                     } else if (change.VrstaZakljucavanja == '\"U\"') {//Promena je ukidanje, nepokretnost nije više aktivna, prekida se obrada promena
                         oldFolio.CHANGELISTID1 = change.changelistId;
                         oldFolio.changeType = change.VrstaZakljucavanja;
+                        oldFolio.currentNepID = parcel.NepID;
                         oldFolio.nextNepID = null;
                         oldFolio.ACTIVE = 0;
                         advance = false;
@@ -229,14 +246,17 @@ Parcels.process = function(parcel, folios, nRsP) {
                             text: '',
                             rlp: rlpAndNumidx.rlp,
                             changeType: change.VrstaZakljucavanja,
-                            currentNepID: parcel.NepID,
+                            currentNepID: change.NoviID,
                             nextNepID: change.NoviID
                         };
                         folio = RealEstates.createFolio(obj);
                         folios.push(folio);
 
                         nRsP.folio = folio;
+
                         Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
+
+                        Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
 
                         advance = false;
                     }
@@ -262,6 +282,8 @@ Parcels.process = function(parcel, folios, nRsP) {
                         nRsP.folio = folio;
                         Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
 
+                        Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
+
                         rlpAndNumidx = Parcels.findrlpAndNumidx(parcel.BrojLN);
 
                         advance = true;
@@ -277,6 +299,8 @@ Parcels.process = function(parcel, folios, nRsP) {
                     } else if (change.VrstaZakljucavanja == '\"U\"') {
                         oldFolio.CHANGELISTID1 = change.changelistId;
                         oldFolio.changeType = change.VrstaZakljucavanja;
+                        //oldFolio.nextNepID = change.TabelaID;
+                        oldFolio.currentNepID = parcel.NepID;
                         oldFolio.nextNepID = null;
                         oldFolio.ACTIVE = 0;
                         advance = false;
@@ -301,6 +325,8 @@ Parcels.process = function(parcel, folios, nRsP) {
                         nRsP.folio = folio;
                         Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
 
+                        Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
+
                         rlpAndNumidx = Parcels.findrlpAndNumidx(parcel.BrojLN);
 
                         advance = true;
@@ -316,7 +342,7 @@ Parcels.process = function(parcel, folios, nRsP) {
                             text: '',
                             rlp: rlpAndNumidx.rlp,
                             changeType: change.VrstaZakljucavanja,
-                            currentNepID: parcel.NepID,
+                            currentNepID: change.NoviID,
                             nextNepID: change.NoviID
                         };
                         folio = RealEstates.createFolio(obj);
@@ -324,6 +350,8 @@ Parcels.process = function(parcel, folios, nRsP) {
 
                         nRsP.folio = folio;
                         Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
+
+                        Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
 
                         advance = false;
                     }
@@ -350,6 +378,8 @@ Parcels.process = function(parcel, folios, nRsP) {
                     nRsP.folio = folio;
                     Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
 
+                    Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
+
                     rlpAndNumidx = Parcels.findrlpAndNumidx(parcel.BrojLN);
 
                     advance = true;
@@ -372,6 +402,8 @@ Parcels.process = function(parcel, folios, nRsP) {
                     nRsP.folio = folio;
                     Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
 
+                    Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
+
                     rlpAndNumidx = Parcels.findrlpAndNumidx(parcel.BrojLN);
 
                     var obj = {
@@ -392,6 +424,8 @@ Parcels.process = function(parcel, folios, nRsP) {
                     nRsP.folio = folio;
                     Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
 
+                    Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
+
                     rlpAndNumidx = Parcels.findrlpAndNumidx(parcel.BrojLN);
 
                     advance = true;
@@ -406,13 +440,15 @@ Parcels.process = function(parcel, folios, nRsP) {
                         rlp: rlpAndNumidx.rlp,
                         changeType: change.VrstaZakljucavanja,
                         currentNepID: parcel.NepID,
-                        nextNepID: parcel.NepID
+                        nextNepID: null //parcel.NepID
                     };
                     folio = RealEstates.createFolio(obj);
                     folios.push(folio);
 
                     nRsP.folio = folio;
                     Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
+
+                    Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
 
                     advance = false;
                 }
@@ -435,6 +471,8 @@ Parcels.process = function(parcel, folios, nRsP) {
                     nRsP.folio = folio;
                     Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
 
+                    Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
+
                     rlpAndNumidx = Parcels.findrlpAndNumidx(parcel.BrojLN);
 
                     var obj = {
@@ -442,11 +480,11 @@ Parcels.process = function(parcel, folios, nRsP) {
                         chid1: null,
                         numberrf: parcel.BrojLN,
                         numidxrf: rlpAndNumidx.numidxrf,
-                        active: 0,
+                        active: 1,
                         text: '',
                         rlp: rlpAndNumidx.rlp,
                         changeType: change.VrstaZakljucavanja,
-                        currentNepID: parcel.NepID,
+                        currentNepID: change.NoviID,
                         nextNepID: change.NoviID
                     };
                     folio = RealEstates.createFolio(obj);
@@ -454,6 +492,8 @@ Parcels.process = function(parcel, folios, nRsP) {
 
                     nRsP.folio = folio;
                     Restrictions.process(nRsP, parcel.restrictions, RealEstateTypes.PARCEL);
+
+                    Ownership.process(nRsP, parcel.owners, RealEstateTypes.PARCEL);
 
                     advance = false;
                 }
@@ -466,6 +506,16 @@ Parcels.process = function(parcel, folios, nRsP) {
     }
 
 
+};
+
+Parcels.findDistinct = function() {
+    var mongo = app.db;
+    return mongo.parcele.aggregate(
+        [
+            {"$group": { "_id": { BrParc: "$BrParc", PodbrParc: "$PodbrParc" } } },
+            { $sort: { _id: 1 } }
+        ]
+    );
 };
 
 module.exports = Parcels;

@@ -18,11 +18,11 @@ ElementaryChanges.process = function(changes, changelistId) {
 ElementaryChanges.processChange = function(change) {
     var table = change.Tabela;
     if(table == 1) {
-        return ElementaryChanges.processChangeOnRealEstate(change);
+        return Q();//return ElementaryChanges.processChangeOnRealEstate(change);
     } else if(table == 2) {
-        return Q();//this.processChangeOnLegalRelations(change)
+        return ElementaryChanges.processChangeOnOwnership(change);
     } else if(table == 3) {
-        return ElementaryChanges.processChangeOnRestriction(change);
+        return Q();//return ElementaryChanges.processChangeOnRestriction(change);
     } else if(table == 4) {
         return Q();//this.processChangeOnPersons(change)
     }
@@ -64,12 +64,24 @@ ElementaryChanges.processChangeOnRestriction = function(change) {
     console.log('Promena ' + change.ElemPromID + ', Transakcija ' + change.TransID);
     return mongo.tereti.findOne({TerID: change.TabelaID})
         .then(function(restriction) {
-            console.log(restriction);
             return mongo.tereti.findAndModify({
                 query: {TerID: restriction.TerID},
                 update: {$push: {changes: change}}
             })
         });
-}
+};
+
+ElementaryChanges.processChangeOnOwnership = function(change) {
+    var mongo = app.db;
+
+    console.log('Promena ' + change.ElemPromID + ', Transakcija ' + change.TransID);
+    return mongo.pravniodnosi.findOne({PravOdID: change.TabelaID})
+        .then(function(ownership) {
+            return mongo.pravniodnosi.findAndModify({
+                query: {PravOdID: ownership.PravOdID},
+                update: {$push: {changes: change}}
+            })
+        });
+};
 
 module.exports = ElementaryChanges;

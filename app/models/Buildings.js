@@ -6,6 +6,8 @@ var PartsOfBuildings = require('./PartsOfBuildings');
 var RealEstates = require('./RealEstates');
 var Restrictions = require('./Restrictions');
 var RealEstateTypes = require('./RealEstateTypes');
+var Ownership = require('./Ownership');
+var Utilities = require('./Utilities');
 
 function Buildings() {
 }
@@ -51,7 +53,7 @@ Buildings.find = function(ppart) {
                 return promise.then(function() {
                     building.parent = ppart;
                     //return PartsOfBuildings.find(building);
-                    return Q.all([PartsOfBuildings.find(building), Restrictions.find(building)]);
+                    return Q.all([PartsOfBuildings.find(building), Restrictions.find(building), Ownership.find(building)]);
                 });
             }, Q([]));
         });
@@ -83,7 +85,7 @@ Buildings.suid = 0;
 
 Buildings.createKnz = function(building, folio, nRsPoP) {
     var knzBuilding = {
-        SUID: Buildings.suid++,
+        SUID: Utilities.createId(Buildings.suid),
         ADDRESSID: null,
         DIMENSION: null,
         BASISID: null,
@@ -96,7 +98,7 @@ Buildings.createKnz = function(building, folio, nRsPoP) {
         PARTPARCELID: nRsPoP.SUID,
         SEQUENCE: nRsPoP.SEQUENCE,
         PROPSECID: null,
-        WAYUSEID: null, //SELECT ID FROM ...
+        WAYUSEID: Utilities.findIdBySign(Buildings.nClWayOfUse, building.Koriscenje), //SELECT ID FROM ...
         BUILDTYPEID: null,
         UID: folio.UID,
         WRITEINID: null,
@@ -117,7 +119,7 @@ Buildings.createKnz = function(building, folio, nRsPoP) {
         ETAZA2: 1,
         ETAZA3: null,
         ETAZA4: null,
-        LEGALSTATUSID: building.StatusObjekta, //promeniti u SELECT ID FROM N_CL_LEGALSTATUS WHERE SIGN = building.StatusObjekta
+        LEGALSTATUSID: Utilities.findIdBySign(Buildings.nClLegalStatus, building.StatusObjekta), //promeniti u SELECT ID FROM N_CL_LEGALSTATUS WHERE SIGN = building.StatusObjekta
         USEFULAREA: null,
         SPECPURPOSEID: null,
         changeType: folio.changeType,
@@ -125,22 +127,20 @@ Buildings.createKnz = function(building, folio, nRsPoP) {
         nextNepID: folio.nextNepID,
         folio: folio
     };
-
+    Buildings.suid += 1;
     return knzBuilding;
 };
 
 Buildings.findPartOfParcel = function(building, change, nRsPartOfParcel) {
     //console.log(nRsPartOfParcel);
-    //console.log(change);
+    console.log(change);
     //console.log(building.parent.NepID);
     var result = null;
     if(change) {
         nRsPartOfParcel.every(function(nRsPoP) {
-            //console.log(nRsPoP);
             var advance = true;
             if(building.parent.NepID == nRsPoP.currentNepID) {
-                if (change.changelistId < nRsPoP.CHANGELISTID1) {
-                    //console.log(nRsPoP)
+                if (change.changelistId <= nRsPoP.CHANGELISTID1) {
                     result = nRsPoP;
                     advance = false;
                 } else {
@@ -150,14 +150,14 @@ Buildings.findPartOfParcel = function(building, change, nRsPartOfParcel) {
             return advance;
         });
     } else {
-        for(var i = nRsPartOfParcel.length - 1; i > 0; i--) {
+        for(var i = nRsPartOfParcel.length - 1; i >= 0; i--) {
             if(building.parent.NepID == nRsPartOfParcel[i].currentNepID) {
                 result = nRsPartOfParcel[i];
                 break;
             }
         }
     }
-    //console.log(result);
+
     return result;
 };
 
@@ -283,6 +283,25 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
 
                 Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
 
+                Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
+
+            } else {
+                throw new Error('GREŠKA: Nije pronađen deo parcele!');
+            }
+        } else {
+            nRsPoP = Buildings.findPartOfParcel(building, null, nRsPartOfParcel);
+            if(nRsPoP) {
+
+                rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF, nRsPoP.folio.RLP);
+
+                oldFolio.NUMBERRF = nRsPoP.folio.NUMBERRF;
+                oldFolio.RLP = nRsPoP.folio.RLP;
+                oldFolio.RLO = rloAndNumidxrf.rlo;
+                oldFolio.NUMIDXRF = rloAndNumidxrf.numidxrf;
+                oldFolio.ACTIVE = 1;
+                oldFolio.currentNepID = building.NepID;
+                oldFolio.nextNepID = building.NepID;
+
             } else {
                 throw new Error('GREŠKA: Nije pronađen deo parcele!');
             }
@@ -298,186 +317,225 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
 
             if(nRsPoP) {
 
+                console.log(oldFolio);
+                console.log(nRsPoP.currentNepID);
+                console.log(change.changelistId);
+                console.log(nRsPoP.CHANGELISTID);
+                console.log(nRsPoP.CHANGELISTID1);
+
                 //Provera da li je promena već obrađena
-                if (oldFolio && change.changelistId < oldFolio.CHANGELISTID1) {
+/*                if ( (oldFolio) && (change.changelistId <= oldFolio.CHANGELISTID1) ) {
                     advance = true;
+                } else {*/
+                advance = true;
+                if(nRsPoP.CHANGELISTID) {
+                    if(nRsPoP.CHANGELISTID1) {
+                        if ((change.changelistId >= nRsPoP.CHANGELISTID) && (change.changelistId <= nRsPoP.CHANGELISTID1)) {
+                            advance = false;
+                        }
+                    } else if(change.changelistId >= nRsPoP.CHANGELISTID) {
+                        advance = false;
+                    }
+                } else if(nRsPoP.CHANGELISTID1) {
+                    if(change.changelistId <= nRsPoP.CHANGELISTID1) {
+                        advance = false;
+                    }
                 } else {
+                    advance = false;
+                }
+
+                if(!advance) {
+
                     if (oldFolio) { //Postoji staro stanje
 
-                        if (oldFolio.changeType == '\"D\"') {//Prethodna promena je dodavanje
+                        if(change.changelistId > oldFolio.CHANGELISTID) {//Promena nije prethodno obrađena
 
-                            if (change.VrstaZakljucavanja == '\"D\"') {//Promena je dodavanje
-                                console.log("UPOZORENJE: Dve promene za redom su dodavanje!");
+                            console.log('U[ao');
+
+                            if (oldFolio.changeType == '\"D\"') {//Prethodna promena je dodavanje
+
+                                if (change.VrstaZakljucavanja == '\"D\"') {//Promena je dodavanje
+                                    console.log("UPOZORENJE: Dve promene za redom su dodavanje!");
+                                    advance = false;
+                                } else if (change.VrstaZakljucavanja == '\"O\"') {//Promena je ostajanje
+                                    oldFolio.CHANGELISTID1 = change.changelistId;
+                                    oldFolio.nextNepID = building.NepID;
+                                    oldNRsB.CHANGELISTID1 = change.changelistId;
+                                    oldNRsB.nextNepID = building.NepID;
+                                    oldFolio.ACTIVE = 0;
+
+                                    rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF,
+                                        nRsPoP.folio.RLP,
+                                        oldFolio.RLO,
+                                        oldFolio.NUMIDXRF
+                                    );
+
+                                    var obj = {
+                                        chid: change.changelistId,
+                                        chid1: null,
+                                        numberrf: building.parent.parent.BrojLN,
+                                        numidxrf: rloAndNumidxrf.numidxrf,
+                                        active: 1,
+                                        text: '',
+                                        rlp: nRsPoP.folio.RLP,
+                                        rlo: rloAndNumidxrf.rlo,
+                                        changeType: change.VrstaZakljucavanja,
+                                        currentNepID: building.NepID,
+                                        nextNepID: building.NepID
+                                    };
+
+                                    folio = RealEstates.createFolio(obj);
+                                    folios.push(folio);
+
+                                    nRsB = Buildings.createKnz(building, folio, nRsPoP);
+                                    nRsBuilding.push(nRsB);
+
+                                    Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
+
+                                    Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
+
+                                    advance = true;
+                                } else if (change.VrstaZakljucavanja == '\"U\"') {//Promena je ukidanje, nepokretnost nije više aktivna, prekida se obrada promena
+                                    oldFolio.CHANGELISTID1 = change.changelistId;
+                                    oldFolio.changeType = change.VrstaZakljucavanja;
+                                    oldFolio.nextNepID = null;
+                                    oldFolio.ACTIVE = 0;
+                                    oldNRsB.CHANGELISTID1 = change.changelistId;
+                                    oldNRsB.changeType = change.VrstaZakljucavanja;
+                                    oldNRsB.nextNepID = null;
+                                    advance = false;
+                                } else if (change.VrstaZakljucavanja == '\"A\"') {//Promena je izmena, prekida se obrada promena
+                                    oldFolio.CHANGELISTID1 = change.changelistId;
+                                    oldFolio.nextNepID = building.NepID;
+                                    oldFolio.ACTIVE = 0;
+                                    oldNRsB.CHANGELISTID1 = change.changelistId;
+                                    oldNRsB.nextNepID = building.NepID;
+
+                                    rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF,
+                                        nRsPoP.folio.RLP,
+                                        oldFolio.RLO,
+                                        oldFolio.NUMIDXRF
+                                    );
+
+                                    var obj = {
+                                        chid: change.changelistId,
+                                        chid1: null,
+                                        numberrf: building.parent.parent.BrojLN,
+                                        numidxrf: rloAndNumidxrf.numidxrf,
+                                        active: 1,
+                                        text: '',
+                                        rlp: nRsPoP.folio.RLP,
+                                        rlo: rloAndNumidxrf.rlo,
+                                        changeType: change.VrstaZakljucavanja,
+                                        currentNepID: building.NepID,
+                                        nextNepID: change.NoviID
+                                    };
+
+                                    folio = RealEstates.createFolio(obj);
+                                    folios.push(folio);
+
+                                    nRsB = Buildings.createKnz(building, folio, nRsPoP);
+                                    nRsBuilding.push(nRsB);
+
+                                    Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
+
+                                    Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
+
+                                    advance = false;
+                                }
+
+                            } else if (oldFolio.changeType == '\"U\"') {
+                                console.log('UPOZORENJE: Prethodna promena je bila ukidanje!')
                                 advance = false;
-                            } else if (change.VrstaZakljucavanja == '\"O\"') {//Promena je ostajanje
-                                oldFolio.CHANGELISTID1 = change.changelistId;
-                                oldFolio.nextNepID = building.NepID;
-                                oldNRsB.CHANGELISTID1 = change.changelistId;
-                                oldNRsB.nextNepID = building.NepID;
-                                oldFolio.ACTIVE = 0;
+                            } else if (oldFolio.changeType == '\"O\"' || oldFolio.changeType == '\"A\"') {
+                                if (change.VrstaZakljucavanja == '\"D\"') {
+                                    console.log('UPOZORENJE: Pokušaj dodavanja, a već postoje prethodna stanja!');
+                                    advance = false;
+                                } else if (change.VrstaZakljucavanja == '\"U\"') {
+                                    oldFolio.CHANGELISTID1 = change.changelistId;
+                                    oldFolio.changeType = change.VrstaZakljucavanja;
+                                    oldFolio.nextNepID = building.NepID;
+                                    oldFolio.ACTIVE = 0;
+                                    oldNRsB.CHANGELISTID1 = change.changelistId;
+                                    oldNRsB.changeType = change.VrstaZakljucavanja;
+                                    oldNRsB.nextNepID = null;
+                                    advance = false;
+                                } else if (change.VrstaZakljucavanja == '\"O\"') {
 
-                                rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF,
-                                    nRsPoP.folio.RLP,
-                                    oldFolio.RLO,
-                                    oldFolio.NUMIDXRF
-                                );
+                                    oldFolio.ACTIVE = 0;
+                                    oldFolio.CHANGELISTID1 = change.changelistId;
+                                    oldNRsB.CHANGELISTID1 = change.changelistId;
 
-                                var obj = {
-                                    chid: change.changelistId,
-                                    chid1: null,
-                                    numberrf: building.parent.parent.BrojLN,
-                                    numidxrf: rloAndNumidxrf.numidxrf,
-                                    active: 1,
-                                    text: '',
-                                    rlp: nRsPoP.folio.RLP,
-                                    rlo: rloAndNumidxrf.rlo,
-                                    changeType: change.VrstaZakljucavanja,
-                                    currentNepID: building.NepID,
-                                    nextNepID: building.NepID
-                                };
+                                    rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF,
+                                        nRsPoP.folio.RLP,
+                                        oldFolio.RLO,
+                                        oldFolio.NUMIDXRF
+                                    );
 
-                                folio = RealEstates.createFolio(obj);
-                                folios.push(folio);
+                                    var obj = {
+                                        chid: change.changelistId,
+                                        chid1: null,
+                                        numberrf: building.parent.parent.BrojLN,
+                                        numidxrf: rloAndNumidxrf.numidxrf,
+                                        active: 1,
+                                        text: '',
+                                        rlp: nRsPoP.folio.RLP,
+                                        rlo: rloAndNumidxrf.rlo,
+                                        changeType: change.VrstaZakljucavanja,
+                                        currentNepID: building.NepID,
+                                        nextNepID: building.NepID
+                                    };
 
-                                nRsB = Buildings.createKnz(building, folio, nRsPoP);
-                                nRsBuilding.push(nRsB);
+                                    folio = RealEstates.createFolio(obj);
+                                    folios.push(folio);
 
-                                Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
+                                    nRsB = Buildings.createKnz(building, folio, nRsPoP);
+                                    nRsBuilding.push(nRsB);
 
-                                advance = true;
-                            } else if (change.VrstaZakljucavanja == '\"U\"') {//Promena je ukidanje, nepokretnost nije više aktivna, prekida se obrada promena
-                                oldFolio.CHANGELISTID1 = change.changelistId;
-                                oldFolio.changeType = change.VrstaZakljucavanja;
-                                oldFolio.nextNepID = null;
-                                oldFolio.ACTIVE = 0;
-                                oldNRsB.CHANGELISTID1 = change.changelistId;
-                                oldNRsB.changeType = change.VrstaZakljucavanja;
-                                oldNRsB.nextNepID = null;
-                                advance = false;
-                            } else if (change.VrstaZakljucavanja == '\"A\"') {//Promena je izmena, prekida se obrada promena
-                                oldFolio.CHANGELISTID1 = change.changelistId;
-                                oldFolio.nextNepID = building.NepID;
-                                oldFolio.ACTIVE = 0;
-                                oldNRsB.CHANGELISTID1 = change.changelistId;
-                                oldNRsB.nextNepID = building.NepID;
+                                    Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
 
-                                rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF,
-                                    nRsPoP.folio.RLP,
-                                    oldFolio.RLO,
-                                    oldFolio.NUMIDXRF
-                                );
+                                    Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
 
-                                var obj = {
-                                    chid: change.changelistId,
-                                    chid1: null,
-                                    numberrf: building.parent.parent.BrojLN,
-                                    numidxrf: rloAndNumidxrf.numidxrf,
-                                    active: 1,
-                                    text: '',
-                                    rlp: nRsPoP.folio.RLP,
-                                    rlo: rloAndNumidxrf.rlo,
-                                    changeType: change.VrstaZakljucavanja,
-                                    currentNepID: building.NepID,
-                                    nextNepID: change.NoviID
-                                };
+                                    advance = true;
 
-                                folio = RealEstates.createFolio(obj);
-                                folios.push(folio);
+                                } else if (change.VrstaZakljucavanja == '\"A\"') {
 
-                                nRsB = Buildings.createKnz(building, folio, nRsPoP);
-                                nRsBuilding.push(nRsB);
+                                    oldFolio.ACTIVE = 0;
+                                    oldFolio.CHANGELISTID1 = change.changelistId;
+                                    oldNRsB.CHANGELISTID1 = change.changelistId;
 
-                                Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
+                                    rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF,
+                                        nRsPoP.folio.RLP,
+                                        oldFolio.RLO,
+                                        oldFolio.NUMIDXRF
+                                    );
 
-                                advance = false;
-                            }
+                                    var obj = {
+                                        chid: change.changelistId,
+                                        chid1: null,
+                                        numberrf: building.parent.parent.BrojLN,
+                                        numidxrf: rloAndNumidxrf.numidxrf,
+                                        active: 1,
+                                        text: '',
+                                        rlp: nRsPoP.folio.RLP,
+                                        rlo: rloAndNumidxrf.rlo,
+                                        changeType: change.VrstaZakljucavanja,
+                                        currentNepID: building.NepID,
+                                        nextNepID: change.NoviID
+                                    };
 
-                        } else if (oldFolio.changeType == '\"U\"') {
-                            console.log('UPOZORENJE: Prethodna promena je bila ukidanje!')
-                            advance = false;
-                        } else if (oldFolio.changeType == '\"O\"' || oldFolio.changeType == '\"A\"') {
-                            if (change.VrstaZakljucavanja == '\"D\"') {
-                                console.log('UPOZORENJE: Pokušaj dodavanja, a već postoje prethodna stanja!');
-                                advance = false;
-                            } else if (change.VrstaZakljucavanja == '\"U\"') {
-                                oldFolio.CHANGELISTID1 = change.changelistId;
-                                oldFolio.changeType = change.VrstaZakljucavanja;
-                                oldFolio.nextNepID = building.NepID;
-                                oldFolio.ACTIVE = 0;
-                                oldNRsB.CHANGELISTID1 = change.changelistId;
-                                oldNRsB.changeType = change.VrstaZakljucavanja;
-                                oldNRsB.nextNepID = null;
-                                advance = false;
-                            } else if (change.VrstaZakljucavanja == '\"O\"') {
+                                    folio = RealEstates.createFolio(obj);
+                                    folios.push(folio);
 
-                                oldFolio.ACTIVE = 0;
-                                oldFolio.CHANGELISTID1 = change.changelistId;
-                                oldNRsB.CHANGELISTID1 = change.changelistId;
+                                    nRsB = Buildings.createKnz(building, folio, nRsPoP);
+                                    nRsBuilding.push(nRsB);
 
-                                rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF,
-                                    nRsPoP.folio.RLP,
-                                    oldFolio.RLO,
-                                    oldFolio.NUMIDXRF
-                                );
+                                    Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
 
-                                var obj = {
-                                    chid: change.changelistId,
-                                    chid1: null,
-                                    numberrf: building.parent.parent.BrojLN,
-                                    numidxrf: rloAndNumidxrf.numidxrf,
-                                    active: 1,
-                                    text: '',
-                                    rlp: nRsPoP.folio.RLP,
-                                    rlo: rloAndNumidxrf.rlo,
-                                    changeType: change.VrstaZakljucavanja,
-                                    currentNepID: building.NepID,
-                                    nextNepID: building.NepID
-                                };
+                                    Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
 
-                                folio = RealEstates.createFolio(obj);
-                                folios.push(folio);
-
-                                nRsB = Buildings.createKnz(building, folio, nRsPoP);
-                                nRsBuilding.push(nRsB);
-
-                                Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
-
-                                advance = true;
-
-                            } else if (change.VrstaZakljucavanja == '\"A\"') {
-                                oldFolio.ACTIVE = 0;
-                                oldFolio.CHANGELISTID1 = change.changelistId;
-                                oldNRsB.CHANGELISTID1 = change.changelistId;
-
-                                rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF,
-                                    nRsPoP.folio.RLP,
-                                    oldFolio.RLO,
-                                    oldFolio.NUMIDXRF
-                                );
-
-                                var obj = {
-                                    chid: change.changelistId,
-                                    chid1: null,
-                                    numberrf: building.parent.parent.BrojLN,
-                                    numidxrf: rloAndNumidxrf.numidxrf,
-                                    active: 1,
-                                    text: '',
-                                    rlp: nRsPoP.folio.RLP,
-                                    rlo: rloAndNumidxrf.rlo,
-                                    changeType: change.VrstaZakljucavanja,
-                                    currentNepID: building.NepID,
-                                    nextNepID: change.NoviID
-                                };
-
-                                folio = RealEstates.createFolio(obj);
-                                folios.push(folio);
-
-                                nRsB = Buildings.createKnz(building, folio, nRsPoP);
-                                nRsBuilding.push(nRsB);
-
-                                Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
-
-                                advance = false;
+                                    advance = false;
+                                }
                             }
                         }
 
@@ -509,6 +567,8 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
 
                             Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
 
+                            Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
+
                             advance = true;
                         } else if (change.VrstaZakljucavanja == '\"O\"') {//Promena je ostajanje
 
@@ -535,6 +595,8 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
                             nRsBuilding.push(nRsB);
 
                             Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
+
+                            Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
 
                             rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF,
                                 nRsPoP.folio.RLP,
@@ -564,6 +626,8 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
 
                             Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
 
+                            Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
+
                             advance = true;
                         } else if (change.VrstaZakljucavanja == '\"U\"') {//Promena je ukidanje, nepokretnost nije više aktivna, prekida se obrada promena
 
@@ -580,7 +644,7 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
                                 rlo: rloAndNumidxrf.rlo,
                                 changeType: change.VrstaZakljucavanja,
                                 currentNepID: building.NepID,
-                                nextNepID: null
+                                nextNepID: building.NepID
                             };
 
                             folio = RealEstates.createFolio(obj);
@@ -590,6 +654,8 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
                             nRsBuilding.push(nRsB);
 
                             Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
+
+                            Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
 
                             advance = false;
                         }
@@ -619,6 +685,8 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
 
                             Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
 
+                            Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
+
                             rloAndNumidxrf = Buildings.findrloAndNumidx(nRsPoP.folio.NUMBERRF,
                                 nRsPoP.folio.RLP,
                                 rloAndNumidxrf.rlo,
@@ -647,13 +715,12 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
 
                             Restrictions.process(nRsB, building.restrictions, RealEstateTypes.BUILDING);
 
+                            Ownership.process(nRsB, building.owners, RealEstateTypes.BUILDING);
+
                             advance = false;
                         }
 
                     }
-
-                    //console.log('\nNOVI FOLIO: ');
-                    //console.log(folio);
 
                     oldFolio = folio;
                     oldNRsB = nRsB;
@@ -664,6 +731,15 @@ Buildings.process = function(building, nRsPartOfParcel, folios, nRsBuilding) {
             return advance;
         });
     }
+};
+
+Buildings.nClLegalStatus = [];
+
+Buildings.nClWayOfUse = [];
+
+Buildings.initCodelists = function() {
+    Buildings.nClWayOfUse = Utilities.loadCodelist('n_cl_wayofuse.json');
+    Buildings.nClLegalStatus = Utilities.loadCodelist('n_cl_legalstatus.json');
 };
 
 module.exports = Buildings;

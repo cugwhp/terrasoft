@@ -1,0 +1,32 @@
+uzeti deo parcele
+videti da li ima  promene
+ako ima ići po promenama
+
+formirati redosled promena za deo parcele
+
+krenuti od prve pojave dela parcele, najmanji NepID i kroz promene pronaći sve pojave tog dela parcele
+
+mogu se pojaviti sledeći slučajevi
+
+1. deo parcele nije imao ikakve promene, što ne znači da i parcela nije imala promene,
+2. deo parcele je prisutan od početka funkcionisanja sistema, ima promene, ali se ne udkida, tj. nastavlja da živi
+3. deo parcele je nastao promenom dodavanja i nastavlja da živi
+4. deo parcele je prisutan od početka, ali prestaje da živi promenom ukidanja
+5. deo parcele je nastao promenom dodavanja, i u jednom trenutku se ukida
+
+1. za svaki folio se generiše unos u N_RS_PARTOFPARCEL
+2. za svaki folio se generiše unos u N_RS_PARTOFPARCEL
+3. generišu se unosi u N_RS_PARTOFPARCEL počevši od folia kog kojeg je CHANGELISTID = change.changelistId za prvu promenu na delu parcele
+4. generišu se unosi za N_RS_PARTOFPARCEL
+5. generišu se unosi u N_RS_PARTOFPARCEL počevši od folia kog kojeg je CHANGELISTID = change.changelistId za prvu promenu na delu parcele
+   do folia kog kojeg je CHANGELISTID1 = change.changelistId za poslednju promenu na delu parcele
+
+ne može lista promena moram ići ovako kako sam krenuo deo po deo da bih pokrio sve
+
+1. uzeti deo parcele
+2. videti da li ima promene
+3. ako nema promene naći folie gde je parcelPart.parent.NepID == folio.currentNepID
+4. za sve folie kreirati unos u N_RS_PARTOFPARCEL
+5. ako ima promene uzeti poslednju promenu
+6. ako je promena ukidanje pronaći poslednji folio kod kojeg je change.changelistId == folio.CHANGELISTID1
+7. za sve folie do tog kreirati unos u N_RS_PARTOFPARCEL

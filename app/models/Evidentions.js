@@ -57,9 +57,14 @@ Evidentions.toMongo = function() {
         })
 };
 
-Evidentions.load = function() {
+Evidentions.loadByTimeOfSubmission = function() {
     var mongo = app.db;
-    return mongo.predmeti.find({$query:{}, $orderBy: {VremeResenja: 1}}).toArray();
+    return mongo.predmeti.find({$query:{VremeIzvrsnosti: {$type: 10} }, $orderBy: {VremePodnosenja: 1}}).toArray();
+};
+
+Evidentions.loadByTimeOfExecution = function() {
+    var mongo = app.db;
+    return mongo.predmeti.find({$query:{}, $orderBy: {VremeIzvrsnosti: 1}}).toArray();
 };
 
 Evidentions.process = function(evidentions) {

@@ -6,6 +6,8 @@ var app = require('../../app');
 var RealEstates = require('./RealEstates');
 var Restrictions = require('./Restrictions');
 var RealEstateTypes = require('./RealEstateTypes');
+var Ownership = require('./Ownership');
+var Utilities = require('./Utilities');
 
 function PartsOfBuildings() {
 }
@@ -54,7 +56,7 @@ PartsOfBuildings.find = function(building) {
             return parts.reduce(function(promise, part) {
                 return promise.then(function() {
                     part.parent = building;
-                    return  Restrictions.find(part);
+                    return  Q.all([Restrictions.find(part), Ownership.find(part)]);
                 });
             }, Q([]));
         })
@@ -65,16 +67,63 @@ PartsOfBuildings.find = function(building) {
 PartsOfBuildings.suid = 0;
 
 PartsOfBuildings.createKnz = function(partOfBuilding, folio, nRsB) {
+
+    var floorId = null;
+    var geodisknFloor = partOfBuilding.BrojSprata;
+    if(geodisknFloor) {
+        var numberGeodisknFloor = parseInt(geodisknFloor, 10);
+        var advance = true;
+        PartsOfBuildings.nClFloor.every(function (clFloor) {
+            var terrasoftFloor = clFloor.NAME.substr(0, 2);
+            if (isNaN(numberGeodisknFloor)) {
+                if (geodisknFloor == terrasoftFloor) {
+                    floorId = clFloor.ID;
+                    advance = false;
+                } else if ((geodisknFloor == 'M1') && (terrasoftFloor == 'ME') && (clFloor.SIGN == '1.5')) {
+                    floorId = clFloor.ID;
+                    advance = false;
+                } else if ((geodisknFloor == 'M2') && (terrasoftFloor == 'ME') && (clFloor.SIGN == '2.5')) {
+                    floorId = clFloor.ID;
+                    advance = false;
+                }
+            } else if (numberGeodisknFloor == parseInt(terrasoftFloor, 10)) {
+                floorId = clFloor.ID;
+                advance = false;
+            }
+            return advance;
+        });
+    }
+
+    var roomId = null;
+    var geodisknRoom = partOfBuilding.BrojSoba;
+    if(geodisknRoom) {
+        if (partOfBuilding.KoriscDO == 3001) {
+            geodisknRoom = 'S ' + geodisknRoom;
+        } else if (partOfBuilding.KoriscDO == 3002) {
+            geodisknRoom = 'P ' + geodisknRoom;
+        } else if (partOfBuilding.KoriscDO == 3003) {
+            geodisknRoom = 'G ' + geodisknRoom;
+        }
+        PartsOfBuildings.nClRoom.every(function (clRoom) {
+            if(clRoom.NAME.substr(0, 5) == geodisknRoom) {
+                roomId = clRoom.ID;
+                return false;
+            } else {
+                return true;
+            }
+        });
+    }
+
     var nRsPoB = {
-        SUID: PartsOfBuildings.suid++,
+        SUID: Utilities.createId(PartsOfBuildings.suid),
         UID: folio.UID,
         BUILDINGID: nRsB.SUID,
         ADDRESSID: null,
         DIMENSION: null,
-        WAYUSEID: partOfBuilding.KoriscDO, //SELECT ID FROM N_CL_WAYOFUSE WHERE SIGN = partOfBuilding.KoriscDO
+        WAYUSEID: Utilities.findIdBySign(PartsOfBuildings.nClWayOfUse, partOfBuilding.KoriscDO), //SELECT ID FROM N_CL_WAYOFUSE WHERE SIGN = partOfBuilding.KoriscDO
         VOLUMEVALUE: null,
-        FLOORID: partOfBuilding.BrojSprata,//SELECT ID FROM N_CL_ROOM WHERE SIGN = partOfBuilding.BrojSprata (videti kod Dude)
-        ROOMID: partOfBuilding.BrojSoba,//SELECT ID FROM N_CL_ROOM WHERE NAME = partOfBuilding.BrojSoba (videti kod Dude)
+        FLOORID: floorId,//SELECT ID FROM N_CL_ROOM WHERE SIGN = partOfBuilding.BrojSprata (videti kod Dude)
+        ROOMID: roomId,//SELECT ID FROM N_CL_ROOM WHERE NAME = partOfBuilding.BrojSoba (videti kod Dude)
         PROPSECID: null,
         UNITTYPEID: null,
         WRITEINID: null,
@@ -102,7 +151,7 @@ PartsOfBuildings.createKnz = function(partOfBuilding, folio, nRsB) {
         BASISID: null,
         SIGNPB: partOfBuilding.BrStana,
         USEFULAREA: partOfBuilding.PovDO,
-        USEFULAREAID: partOfBuilding.NacUtvPov,//SELECT ID FROM N_CL_USEFULAREA WHERE SIGN = partOfBuilding.NacUtvPov
+        USEFULAREAID: Utilities.findIdBySign(PartsOfBuildings.nClUsefulArea, partOfBuilding.NacUtvPov),//SELECT ID FROM N_CL_USEFULAREA WHERE SIGN = partOfBuilding.NacUtvPov
         ENTNO: null,
         SPECPURPOSE: null,
         changeType: folio.changeType,
@@ -110,6 +159,7 @@ PartsOfBuildings.createKnz = function(partOfBuilding, folio, nRsB) {
         nextNepID: folio.nextNepID,
         folio: folio
     };
+    PartsOfBuildings.suid += 1;
     return nRsPoB;
 };
 
@@ -129,7 +179,7 @@ PartsOfBuildings.findBuilding = function(partOfBuilding, change, nRsBuilding) {
             return advance;
         });
     } else {
-        for(var i = nRsBuilding.length - 1; i > 0; i--) {
+        for(var i = nRsBuilding.length - 1; i >= 0; i--) {
             if(partOfBuilding.parent.NepID == nRsBuilding[i].currentNepID) {
                 result = nRsBuilding[i];
                 break;
@@ -267,6 +317,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
 
                 Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
 
+                Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
+
             } else {
                 throw new Error('GREŠKA: Nije pronađen deo parcele!');
             }
@@ -339,6 +391,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
 
                                 Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
 
+                                Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
+
                                 advance = true;
                             } else if (change.VrstaZakljucavanja == '\"U\"') {//Promena je ukidanje, nepokretnost nije više aktivna, prekida se obrada promena
                                 oldFolio.CHANGELISTID1 = change.changelistId;
@@ -385,6 +439,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
                                 nRsPartOfBuilding.push(nRsPoB);
 
                                 Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
+
+                                Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
 
                                 advance = false;
                             }
@@ -441,6 +497,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
 
                                 Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
 
+                                Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
+
                                 advance = true;
 
                             } else if (change.VrstaZakljucavanja == '\"A\"') {
@@ -478,6 +536,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
 
                                 Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
 
+                                Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
+
                                 advance = false;
                             }
                         }
@@ -514,6 +574,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
 
                             Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
 
+                            Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
+
                             advance = true;
                         } else if (change.VrstaZakljucavanja == '\"O\"') {//Promena je ostajanje
 
@@ -545,6 +607,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
 
                             Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
 
+                            Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
+
                             rlsAndNumidxrf = PartsOfBuildings.findrloAndNumidx(nRsB.folio.NUMBERRF,
                                 nRsB.folio.RLP,
                                 nRsB.folio.RLO,
@@ -574,6 +638,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
                             nRsPartOfBuilding.push(nRsPoB);
 
                             Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
+
+                            Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
 
                             advance = true;
                         } else if (change.VrstaZakljucavanja == '\"U\"') {//Promena je ukidanje, nepokretnost nije više aktivna, prekida se obrada promena
@@ -605,6 +671,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
                             nRsPartOfBuilding.push(nRsPoB);
 
                             Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
+
+                            Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
 
                             advance = false;
                         }
@@ -638,6 +706,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
 
                             Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
 
+                            Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
+
                             rlsAndNumidxrf = PartsOfBuildings.findrloAndNumidx(nRsB.folio.NUMBERRF,
                                 nRsB.folio.RLP,
                                 nRsB.folio.RLO,
@@ -668,6 +738,8 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
 
                             Restrictions.process(nRsPoB, partOfBuilding.restrictions, RealEstateTypes.PARTOFBUILDING);
 
+                            Ownership.process(nRsPoB, partOfBuilding.owners, RealEstateTypes.PARTOFBUILDING);
+
                             advance = false;
                         }
 
@@ -684,6 +756,20 @@ PartsOfBuildings.process = function(partOfBuilding, nRsBuilding, folios, nRsPart
     }
 };
 
+PartsOfBuildings.nClWayOfUse = [];
+
+PartsOfBuildings.nClFloor = [];
+
+PartsOfBuildings.nClRoom = [];
+
+PartsOfBuildings.nClUsefulArea = [];
+
+PartsOfBuildings.initCodelists = function() {
+    PartsOfBuildings.nClWayOfUse = Utilities.loadCodelist('n_cl_wayofuse.json');
+    PartsOfBuildings.nClFloor = Utilities.loadCodelist('n_cl_floor.json');
+    PartsOfBuildings.nClRoom = Utilities.loadCodelist('n_cl_room.json');
+    PartsOfBuildings.nClUsefulArea = Utilities.loadCodelist('n_cl_usefularea.json');
+};
 
 module.exports = PartsOfBuildings;
 

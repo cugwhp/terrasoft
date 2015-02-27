@@ -1,5 +1,6 @@
 var app = require('../../app');
 var RealEstateTypes = require('./RealEstateTypes');
+var Utilities = require('./Utilities');
 
 function Restrictions() {};
 
@@ -71,6 +72,8 @@ Restrictions.oid = 0;
 
 Restrictions.nRsRestrictions = [];
 
+Restrictions.laRestrictionType = [];
+
 Restrictions.createKnz = function(restriction,
                                   realEstate,
                                   realEstateType,
@@ -86,14 +89,6 @@ Restrictions.createKnz = function(restriction,
     var sequence = null;
     var number = null;
     var numidx = null;
-
-    console.log(realEstateType);
-    console.log(realEstate.folio.UID);
-    console.log(realEstate.folio.CHANGELISTID);
-    console.log(realEstate.folio.CHANGELISTID1);
-    console.log(changelistId);
-    console.log(changelistId1);
-    console.log(active);
 
     if( realEstateType == RealEstateTypes.PARCEL ) {
         parcelid = realEstate.SUID;
@@ -137,7 +132,7 @@ Restrictions.createKnz = function(restriction,
         BEGINLIFESPANVERSION: null,
         ENDLIFESPANVERSION: null,
         UID: realEstate.folio.UID,
-        RESTRICTIONTYPE: restriction.Teret, //SELECT ID FROM LA_RESTRICTIONTYPE where sign = restriction.Teret
+        RESTRICTIONTYPE: Utilities.findIdBySign(Restrictions.laRestrictionType, restriction.Teret), //SELECT ID FROM LA_RESTRICTIONTYPE where sign = restriction.Teret
         REGDATE: restriction.DatumUpisa,
         HOUR: 0,
         MINUTE: 0,
@@ -182,7 +177,6 @@ Restrictions.process = function(realEstate, restrictions, realEstateType) {
 
     var changelistId = null;
     var changelistId1 = null;
-    var nRsRestriction;
 
     restrictions.forEach( function( restriction ) {
 
@@ -251,6 +245,10 @@ Restrictions.process = function(realEstate, restrictions, realEstateType) {
 
     });
 
+};
+
+Restrictions.initCodelists = function() {
+    Restrictions.laRestrictionType = Utilities.loadCodelist('la_restrictiontype.json');
 };
 
 module.exports = Restrictions;

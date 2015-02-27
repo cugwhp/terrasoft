@@ -1,0 +1,164 @@
+2 / 0
+[
+  {
+    "_id": "54d7488b1070ee2025bc1cf9",
+    "BrParc": 2,
+    "PodbrParc": null,
+    "MatBrSK": 7011466,
+    "Bonitet": null,
+    "VrZem": 8,
+    "MatBrNas": 704091,
+    "MatBrUli": 125276,
+    "NepID": 25438,
+    "BrPlana": "1",
+    "BrSkice": "2",
+    "BrManuala": null,
+    "GodSkMan": "1971",
+    "Povrsina": 5486,
+    "BrojLN": 2224,
+    "BrojPL": null,
+    "Geometry1": null,
+    "Geometry1_SK": null,
+    "Fakticko": true,
+    "restrictions": [],
+    "parts": [
+      {
+        "_id": "54d7488b1070ee2025bc2131",
+        "NepID": 5,
+        "BrDelaParc": 1,
+        "Kultura": 152,
+        "Povrsina": 5486,
+        "Geometry1": null,
+        "Geometry1_SK": null,
+        "Fakticko": true,
+        "TKKod": null,
+        "parent": null,
+        "owners": [],
+        "restrictions": [],
+        "buildings": []
+      }
+    ],
+    "owners": [
+      {
+        "_id": "54de1eb565445c1431a274bd",
+        "PravOdID": 25985,
+        "NepID": 25438,
+        "LiceID": 940,
+        "VrstaPrava": 1,
+        "OblikSvojine": 1,
+        "ObimPrava": 1,
+        "VrstaPravaKZ": null,
+        "Brojilac": 1,
+        "Imenilac": 1,
+        "RETIRED": null,
+        "LiceIDPorez": null,
+        "VrstaStanja": 1,
+        "JS": null,
+        "changes": [
+          {
+            "_id": "5491746fe81292681888306d",
+            "TransID": 2526,
+            "Tabela": 2,
+            "MatBrKO": 723070,
+            "TabelaID": 25985,
+            "VrstaZakljucavanja": "\"D\"",
+            "ElemPromID": 17211,
+            "VrstaStanja": 2,
+            "NoviID": 4,
+            "UserName": "\"vesnar\"",
+            "VremeUpisa": "6/24/2011 13:19:37\r",
+            "changelistId": 3002462
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_id": "54d7488b1070ee2025bc0659",
+    "BrParc": 2,
+    "PodbrParc": null,
+    "MatBrSK": 7011466,
+    "Bonitet": null,
+    "VrZem": 7,
+    "MatBrNas": 704091,
+    "MatBrUli": 125276,
+    "NepID": 4,
+    "BrPlana": "1",
+    "BrSkice": "2",
+    "BrManuala": null,
+    "GodSkMan": "1971",
+    "Povrsina": 5486,
+    "BrojLN": 396,
+    "BrojPL": null,
+    "Geometry1": null,
+    "Geometry1_SK": null,
+    "Fakticko": true,
+    "changes": [
+      {
+        "_id": "5491746fe81292681888306b",
+        "TransID": 2526,
+        "Tabela": 1,
+        "MatBrKO": 723070,
+        "TabelaID": 4,
+        "VrstaZakljucavanja": "\"A\"",
+        "ElemPromID": 17209,
+        "VrstaStanja": 2,
+        "NoviID": 25438,
+        "UserName": "\"vesnar\"",
+        "VremeUpisa": "6/24/2011 13:19:32\r",
+        "changelistId": 3002462
+      }
+    ],
+    "restrictions": [],
+    "owners": [
+      {
+        "_id": "54de1eb465445c1431a229d0",
+        "PravOdID": 2,
+        "NepID": 4,
+        "LiceID": 940,
+        "VrstaPrava": 2,
+        "OblikSvojine": 2,
+        "ObimPrava": 1,
+        "VrstaPravaKZ": null,
+        "Brojilac": 1,
+        "Imenilac": 1,
+        "LiceIDPorez": null,
+        "VrstaStanja": 2,
+        "JS": null,
+        "changes": [
+          {
+            "_id": "5491746fe81292681888306c",
+            "TransID": 2526,
+            "Tabela": 2,
+            "MatBrKO": 723070,
+            "TabelaID": 2,
+            "VrstaZakljucavanja": "\"U\"",
+            "ElemPromID": 17210,
+            "VrstaStanja": 2,
+            "NoviID": 4,
+            "UserName": "\"vesnar\"",
+            "VremeUpisa": "6/24/2011 13:19:37\r",
+            "changelistId": 3002462
+          }
+        ]
+      }
+    ],
+    "parts": [
+      {
+        "_id": "54d7488b1070ee2025bc2131",
+        "NepID": 5,
+        "BrDelaParc": 1,
+        "Kultura": 152,
+        "Povrsina": 5486,
+        "Geometry1": null,
+        "Geometry1_SK": null,
+        "Fakticko": true,
+        "TKKod": null,
+        "parent": null,
+        "restrictions": [],
+        "owners": [],
+        "buildings": []
+      }
+    ]
+  }
+]

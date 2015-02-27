@@ -1,3 +1,4 @@
+1627 / 0
 [
   {
     "_id": "54d7488b1070ee2025bc20f1",
@@ -19,6 +20,7 @@
     "Geometry1": null,
     "Geometry1_SK": null,
     "Fakticko": true,
+    "restrictions": [],
     "owners": [
       {
         "_id": "54de1eb565445c1431a2848d",
@@ -37,7 +39,6 @@
         "JS": null
       }
     ],
-    "restrictions": [],
     "parts": [
       {
         "_id": "54d7488c1070ee2025bc46ea",
@@ -51,8 +52,8 @@
         "TKKod": null,
         "parent": null,
         "restrictions": [],
-        "buildings": [],
-        "owners": []
+        "owners": [],
+        "buildings": []
       },
       {
         "_id": "54d7488c1070ee2025bc46eb",
@@ -930,23 +931,6 @@
               }
             ],
             "parent": null,
-            "restrictions": [
-              {
-                "_id": "54d7488a1070ee2025bbf0a9",
-                "TerID": 6438,
-                "Teret": 143,
-                "LiceID": null,
-                "NepID": 28041,
-                "OpisTereta": " ",
-                "DatumUpisa": "2014-03-26T23:00:00.000Z",
-                "Trajanje": null,
-                "DatumBrisanja": null,
-                "CREATED": "2014-05-27T05:44:22.000Z",
-                "RETIRED": null,
-                "VrstaStanja": 1,
-                "LiceIDTeret": null
-              }
-            ],
             "owners": [
               {
                 "_id": "54de1eb565445c1431a28547",
@@ -963,6 +947,23 @@
                 "LiceIDPorez": null,
                 "VrstaStanja": 1,
                 "JS": null
+              }
+            ],
+            "restrictions": [
+              {
+                "_id": "54d7488a1070ee2025bbf0a9",
+                "TerID": 6438,
+                "Teret": 143,
+                "LiceID": null,
+                "NepID": 28041,
+                "OpisTereta": " ",
+                "DatumUpisa": "2014-03-26T23:00:00.000Z",
+                "Trajanje": null,
+                "DatumBrisanja": null,
+                "CREATED": "2014-05-27T05:44:22.000Z",
+                "RETIRED": null,
+                "VrstaStanja": 1,
+                "LiceIDTeret": null
               }
             ],
             "parts": [
@@ -2539,6 +2540,7 @@
         "changelistId": 3000029
       }
     ],
+    "restrictions": [],
     "owners": [
       {
         "_id": "54de1eb465445c1431a23838",
@@ -2572,7 +2574,6 @@
         ]
       }
     ],
-    "restrictions": [],
     "parts": [
       {
         "_id": "54d7488c1070ee2025bc3377",
@@ -2855,7 +2856,6 @@
         ],
         "parent": null,
         "restrictions": [],
-        "owners": [],
         "buildings": [
           {
             "_id": "54d748871070ee2025bbd284",
@@ -3047,7 +3047,8 @@
             ],
             "parts": []
           }
-        ]
+        ],
+        "owners": []
       },
       {
         "_id": "54d7488c1070ee2025bc3376",
@@ -3911,6 +3912,7 @@
             ],
             "parent": null,
             "restrictions": [],
+            "parts": [],
             "owners": [
               {
                 "_id": "54de1eb465445c1431a23837",
@@ -4033,8 +4035,7 @@
                   }
                 ]
               }
-            ],
-            "parts": []
+            ]
           }
         ]
       },
@@ -4133,6 +4134,7 @@
             ],
             "parent": null,
             "restrictions": [],
+            "parts": [],
             "owners": [
               {
                 "_id": "54de1eb465445c1431a23839",
@@ -4255,8 +4257,7 @@
                   }
                 ]
               }
-            ],
-            "parts": []
+            ]
           }
         ]
       },
@@ -4302,8 +4303,8 @@
         ],
         "parent": null,
         "restrictions": [],
-        "owners": [],
-        "buildings": []
+        "buildings": [],
+        "owners": []
       }
     ]
   },
@@ -4909,7 +4910,6 @@
         ],
         "parent": null,
         "restrictions": [],
-        "owners": [],
         "buildings": [
           {
             "_id": "54d748871070ee2025bbd284",
@@ -4976,6 +4976,7 @@
             ],
             "parent": null,
             "restrictions": [],
+            "parts": [],
             "owners": [
               {
                 "_id": "54de1eb465445c1431a23837",
@@ -5098,10 +5099,10 @@
                   }
                 ]
               }
-            ],
-            "parts": []
+            ]
           }
-        ]
+        ],
+        "owners": []
       },
       {
         "_id": "54d7488c1070ee2025bc41d2",
@@ -5131,7 +5132,6 @@
         ],
         "parent": null,
         "restrictions": [],
-        "owners": [],
         "buildings": [
           {
             "_id": "54d748871070ee2025bbd285",
@@ -5198,6 +5198,7 @@
             ],
             "parent": null,
             "restrictions": [],
+            "parts": [],
             "owners": [
               {
                 "_id": "54de1eb465445c1431a23839",
@@ -5320,10 +5321,10 @@
                   }
                 ]
               }
-            ],
-            "parts": []
+            ]
           }
-        ]
+        ],
+        "owners": []
       },
       {
         "_id": "54d7488c1070ee2025bc41d3",
@@ -5373,3 +5374,1819 @@
     ]
   }
 ]
+465
+{ rlp: 1, numidxrf: 1 }
+465
+{ rlp: 1, numidxrf: 2 }
+465
+{ rlp: 1, numidxrf: 3 }
+2111
+{ rlp: 1, numidxrf: 1 }
+2111
+{ rlp: 1, numidxrf: 2 }
+2111
+{ rlp: 1, numidxrf: 3 }
+{ _id: 5491746fe81292681887f923,
+  TransID: 41,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9752,
+  VrstaZakljucavanja: '"A"',
+  ElemPromID: 211,
+  VrstaStanja: 2,
+  NoviID: 22044,
+  UserName: '"dragicak"',
+  VremeUpisa: '4/2/2008 13:53:15\r',
+  changelistId: 3000029 }
+{ UID: 0,
+  CHANGELISTID: null,
+  CHANGELISTID1: 3000029,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 1,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"U"',
+  currentNepID: 9751,
+  nextNepID: null,
+  chid1: 3000029 }
+9752
+9751
+undefined
+3000029
+Usao
+{ _id: 5491746fe81292681887f924,
+  TransID: 41,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9754,
+  VrstaZakljucavanja: '"A"',
+  ElemPromID: 212,
+  VrstaStanja: 2,
+  NoviID: 22045,
+  UserName: '"dragicak"',
+  VremeUpisa: '4/2/2008 13:53:26\r',
+  changelistId: 3000029 }
+{ UID: 0,
+  CHANGELISTID: null,
+  CHANGELISTID1: 3000029,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 1,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"U"',
+  currentNepID: 9751,
+  nextNepID: null,
+  chid1: 3000029 }
+9754
+9751
+undefined
+3000029
+Usao
+{ _id: 5491746fe81292681887f925,
+  TransID: 41,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9756,
+  VrstaZakljucavanja: '"A"',
+  ElemPromID: 213,
+  VrstaStanja: 2,
+  NoviID: 22046,
+  UserName: '"dragicak"',
+  VremeUpisa: '4/2/2008 13:53:36\r',
+  changelistId: 3000029 }
+{ UID: 0,
+  CHANGELISTID: null,
+  CHANGELISTID1: 3000029,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 1,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"U"',
+  currentNepID: 9751,
+  nextNepID: null,
+  chid1: 3000029 }
+9756
+9751
+undefined
+3000029
+Usao
+{ _id: 5491746fe81292681887f91f,
+  TransID: 41,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9758,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 207,
+  VrstaStanja: 2,
+  NoviID: 9751,
+  UserName: '"dragicak"',
+  VremeUpisa: '4/2/2008 13:44:36\r',
+  changelistId: 3000029 }
+{ UID: 0,
+  CHANGELISTID: null,
+  CHANGELISTID1: 3000029,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 1,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"U"',
+  currentNepID: 9751,
+  nextNepID: null,
+  chid1: 3000029 }
+9758
+9751
+undefined
+3000029
+Usao
+{ _id: 54917470e81292681888601f,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9744,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30748,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:19\r',
+  changelistId: 3004574 }
+{ UID: 1,
+  CHANGELISTID: 3000029,
+  CHANGELISTID1: 3001490,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 2,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"D"',
+  currentNepID: 22043,
+  nextNepID: 22043,
+  chid: 3000029,
+  chid1: 3001490 }
+9744
+22043
+3000029
+3001490
+Usao
+{ _id: 54917470e812926818886022,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22044,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30751,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:37\r',
+  changelistId: 3004574 }
+{ UID: 1,
+  CHANGELISTID: 3000029,
+  CHANGELISTID1: 3001490,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 2,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"D"',
+  currentNepID: 22043,
+  nextNepID: 22043,
+  chid: 3000029,
+  chid1: 3001490 }
+22044
+22043
+3000029
+3001490
+Usao
+{ _id: 54917470e812926818886025,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22045,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30754,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:50\r',
+  changelistId: 3004574 }
+{ UID: 1,
+  CHANGELISTID: 3000029,
+  CHANGELISTID1: 3001490,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 2,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"D"',
+  currentNepID: 22043,
+  nextNepID: 22043,
+  chid: 3000029,
+  chid1: 3001490 }
+22045
+22043
+3000029
+3001490
+Usao
+{ _id: 54917470e812926818886028,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22046,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30757,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:18:12\r',
+  changelistId: 3004574 }
+{ UID: 1,
+  CHANGELISTID: 3000029,
+  CHANGELISTID1: 3001490,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 2,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"D"',
+  currentNepID: 22043,
+  nextNepID: 22043,
+  chid: 3000029,
+  chid1: 3001490 }
+22046
+22043
+3000029
+3001490
+Usao
+{ _id: 5491746fe81292681887f926,
+  TransID: 41,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22047,
+  VrstaZakljucavanja: '"D"',
+  ElemPromID: 214,
+  VrstaStanja: 2,
+  NoviID: 22043,
+  UserName: '"dragicak"',
+  VremeUpisa: '4/2/2008 13:54:55\r',
+  changelistId: 3000029 }
+{ UID: 1,
+  CHANGELISTID: 3000029,
+  CHANGELISTID1: 3001490,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 2,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"D"',
+  currentNepID: 22043,
+  nextNepID: 22043,
+  chid: 3000029,
+  chid1: 3001490 }
+22047
+22043
+3000029
+3001490
+{ _id: 54917470e812926818886029,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22047,
+  VrstaZakljucavanja: '"A"',
+  ElemPromID: 30758,
+  VrstaStanja: 2,
+  NoviID: 27949,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:18:24\r',
+  changelistId: 3004574 }
+{ UID: 1,
+  CHANGELISTID: 3000029,
+  CHANGELISTID1: 3001490,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 2,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"D"',
+  currentNepID: 22043,
+  nextNepID: 22043,
+  chid: 3000029,
+  chid1: 3001490 }
+22047
+22043
+3000029
+3001490
+Usao
+{ _id: 54917470e81292681888601f,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9744,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30748,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:19\r',
+  changelistId: 3004574 }
+{ UID: 2,
+  CHANGELISTID: 3001490,
+  CHANGELISTID1: 3002033,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"A"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3001490,
+  chid1: 3002033 }
+9744
+24053
+3001490
+3002033
+Usao
+{ _id: 54917470e81292681888601f,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9744,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30748,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:19\r',
+  changelistId: 3004574 }
+{ UID: 3,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: 3004574,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 1,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3002033,
+  chid1: 3004574 }
+9744
+24053
+3002033
+3004574
+Usao
+{ _id: 54917470e812926818886022,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22044,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30751,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:37\r',
+  changelistId: 3004574 }
+{ UID: 2,
+  CHANGELISTID: 3001490,
+  CHANGELISTID1: 3002033,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"A"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3001490,
+  chid1: 3002033 }
+22044
+24053
+3001490
+3002033
+Usao
+{ _id: 54917470e812926818886022,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22044,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30751,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:37\r',
+  changelistId: 3004574 }
+{ UID: 3,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: 3004574,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 1,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3002033,
+  chid1: 3004574 }
+22044
+24053
+3002033
+3004574
+Usao
+{ _id: 54917470e812926818886025,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22045,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30754,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:50\r',
+  changelistId: 3004574 }
+{ UID: 2,
+  CHANGELISTID: 3001490,
+  CHANGELISTID1: 3002033,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"A"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3001490,
+  chid1: 3002033 }
+22045
+24053
+3001490
+3002033
+Usao
+{ _id: 54917470e812926818886025,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22045,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30754,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:50\r',
+  changelistId: 3004574 }
+{ UID: 3,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: 3004574,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 1,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3002033,
+  chid1: 3004574 }
+22045
+24053
+3002033
+3004574
+Usao
+{ _id: 54917470e812926818886028,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22046,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30757,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:18:12\r',
+  changelistId: 3004574 }
+{ UID: 2,
+  CHANGELISTID: 3001490,
+  CHANGELISTID1: 3002033,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"A"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3001490,
+  chid1: 3002033 }
+22046
+24053
+3001490
+3002033
+Usao
+{ _id: 54917470e812926818886028,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22046,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30757,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:18:12\r',
+  changelistId: 3004574 }
+{ UID: 3,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: 3004574,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 1,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3002033,
+  chid1: 3004574 }
+22046
+24053
+3002033
+3004574
+Usao
+{ _id: 5491746fe81292681887f926,
+  TransID: 41,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22047,
+  VrstaZakljucavanja: '"D"',
+  ElemPromID: 214,
+  VrstaStanja: 2,
+  NoviID: 22043,
+  UserName: '"dragicak"',
+  VremeUpisa: '4/2/2008 13:54:55\r',
+  changelistId: 3000029 }
+{ UID: 2,
+  CHANGELISTID: 3001490,
+  CHANGELISTID1: 3002033,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"A"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3001490,
+  chid1: 3002033 }
+22047
+24053
+3001490
+3002033
+{ _id: 5491746fe81292681887f926,
+  TransID: 41,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22047,
+  VrstaZakljucavanja: '"D"',
+  ElemPromID: 214,
+  VrstaStanja: 2,
+  NoviID: 22043,
+  UserName: '"dragicak"',
+  VremeUpisa: '4/2/2008 13:54:55\r',
+  changelistId: 3000029 }
+{ UID: 3,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: 3004574,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 1,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3002033,
+  chid1: 3004574 }
+22047
+24053
+3002033
+3004574
+{ _id: 54917470e812926818886029,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22047,
+  VrstaZakljucavanja: '"A"',
+  ElemPromID: 30758,
+  VrstaStanja: 2,
+  NoviID: 27949,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:18:24\r',
+  changelistId: 3004574 }
+{ UID: 2,
+  CHANGELISTID: 3001490,
+  CHANGELISTID1: 3002033,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"A"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3001490,
+  chid1: 3002033 }
+22047
+24053
+3001490
+3002033
+Usao
+{ _id: 54917470e812926818886029,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 22047,
+  VrstaZakljucavanja: '"A"',
+  ElemPromID: 30758,
+  VrstaStanja: 2,
+  NoviID: 27949,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:18:24\r',
+  changelistId: 3004574 }
+{ UID: 3,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: 3004574,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 1,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 24053,
+  nextNepID: 24053,
+  chid: 3002033,
+  chid1: 3004574 }
+22047
+24053
+3002033
+3004574
+Usao
+{ _id: 54917470e81292681888602a,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 27950,
+  VrstaZakljucavanja: '"D"',
+  ElemPromID: 30759,
+  VrstaStanja: 2,
+  NoviID: 24053,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:21:25\r',
+  changelistId: 3004574 }
+{ UID: 4,
+  CHANGELISTID: 3004574,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 2,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: null,
+  RLS: null,
+  changeType: '"A"',
+  currentNepID: 27948,
+  nextNepID: 27948,
+  chid: 3004574,
+  chid1: 9007199254740992 }
+27950
+27948
+3004574
+9007199254740992
+OBJEKAT 9753
+{ _id: 5491746fe812926818881a25,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9753,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10887,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:27:39\r',
+  changelistId: 3001490 }
+undefined
+9752
+3001490
+null
+3000029
+{ _id: 5491746fe812926818882683,
+  TransID: 2091,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9753,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 14329,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '12/9/2010 7:19:33\r',
+  changelistId: 3002033 }
+undefined
+9752
+3002033
+null
+3000029
+{ _id: 54917470e812926818886020,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9753,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30749,
+  VrstaStanja: 2,
+  NoviID: 22044,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:23\r',
+  changelistId: 3004574 }
+undefined
+9752
+3004574
+null
+3000029
+OBJEKAT 9755
+{ _id: 5491746fe812926818881a28,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9755,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10890,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:27:55\r',
+  changelistId: 3001490 }
+undefined
+9754
+3001490
+null
+3000029
+{ _id: 5491746fe812926818882686,
+  TransID: 2091,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9755,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 14332,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '12/9/2010 7:19:51\r',
+  changelistId: 3002033 }
+undefined
+9754
+3002033
+null
+3000029
+{ _id: 54917470e812926818886023,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9755,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30752,
+  VrstaStanja: 2,
+  NoviID: 22045,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:40\r',
+  changelistId: 3004574 }
+undefined
+9754
+3004574
+null
+3000029
+OBJEKAT 9757
+{ _id: 5491746fe812926818881a2b,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9757,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10893,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:28:13\r',
+  changelistId: 3001490 }
+undefined
+9756
+3001490
+null
+3000029
+{ _id: 5491746fe812926818882689,
+  TransID: 2091,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9757,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 14335,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '12/9/2010 7:20:08\r',
+  changelistId: 3002033 }
+undefined
+9756
+3002033
+null
+3000029
+{ _id: 54917470e812926818886026,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9757,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30755,
+  VrstaStanja: 2,
+  NoviID: 22046,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:55\r',
+  changelistId: 3004574 }
+undefined
+9756
+3004574
+null
+3000029
+OBJEKAT 9745
+{ _id: 5491746fe812926818881a22,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9745,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10884,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:27:14\r',
+  changelistId: 3001490 }
+undefined
+9744
+3001490
+3000029
+3001490
+{ _id: 5491746fe812926818882680,
+  TransID: 2091,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9745,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 14326,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '12/9/2010 7:19:22\r',
+  changelistId: 3002033 }
+{ UID: 6,
+  CHANGELISTID: 3001490,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 2,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 1,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 9745,
+  nextNepID: 9745 }
+9744
+3002033
+3001490
+3002033
+U[ao
+{ _id: 54917470e81292681888601d,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9745,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30746,
+  VrstaStanja: 2,
+  NoviID: 9744,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:03\r',
+  changelistId: 3004574 }
+{ UID: 7,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 1,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 9745,
+  nextNepID: 9745 }
+9744
+3004574
+3002033
+3004574
+U[ao
+OBJEKAT 9753
+{ _id: 5491746fe812926818881a25,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9753,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10887,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:27:39\r',
+  changelistId: 3001490 }
+undefined
+22044
+3001490
+3000029
+3001490
+{ _id: 5491746fe812926818882683,
+  TransID: 2091,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9753,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 14329,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '12/9/2010 7:19:33\r',
+  changelistId: 3002033 }
+{ UID: 9,
+  CHANGELISTID: 3001490,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 2,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 2,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 9753,
+  nextNepID: 9753 }
+22044
+3002033
+3001490
+3002033
+U[ao
+{ _id: 54917470e812926818886020,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9753,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30749,
+  VrstaStanja: 2,
+  NoviID: 22044,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:23\r',
+  changelistId: 3004574 }
+{ UID: 10,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 2,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 9753,
+  nextNepID: 9753 }
+22044
+3004574
+3002033
+3004574
+U[ao
+OBJEKAT 9755
+{ _id: 5491746fe812926818881a28,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9755,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10890,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:27:55\r',
+  changelistId: 3001490 }
+undefined
+22045
+3001490
+3000029
+3001490
+{ _id: 5491746fe812926818882686,
+  TransID: 2091,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9755,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 14332,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '12/9/2010 7:19:51\r',
+  changelistId: 3002033 }
+{ UID: 12,
+  CHANGELISTID: 3001490,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 2,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 3,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 9755,
+  nextNepID: 9755 }
+22045
+3002033
+3001490
+3002033
+U[ao
+{ _id: 54917470e812926818886023,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9755,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30752,
+  VrstaStanja: 2,
+  NoviID: 22045,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:40\r',
+  changelistId: 3004574 }
+{ UID: 13,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 3,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 9755,
+  nextNepID: 9755 }
+22045
+3004574
+3002033
+3004574
+U[ao
+OBJEKAT 9757
+{ _id: 5491746fe812926818881a2b,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9757,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10893,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:28:13\r',
+  changelistId: 3001490 }
+undefined
+22046
+3001490
+3000029
+3001490
+{ _id: 5491746fe812926818882689,
+  TransID: 2091,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9757,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 14335,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '12/9/2010 7:20:08\r',
+  changelistId: 3002033 }
+{ UID: 15,
+  CHANGELISTID: 3001490,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 2,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 4,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 9757,
+  nextNepID: 9757 }
+22046
+3002033
+3001490
+3002033
+U[ao
+{ _id: 54917470e812926818886026,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9757,
+  VrstaZakljucavanja: '"U"',
+  ElemPromID: 30755,
+  VrstaStanja: 2,
+  NoviID: 22046,
+  UserName: '"vesnar"',
+  VremeUpisa: '2/28/2014 8:17:55\r',
+  changelistId: 3004574 }
+{ UID: 16,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 4,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 9757,
+  nextNepID: 9757 }
+22046
+3004574
+3002033
+3004574
+U[ao
+OBJEKAT 9745
+{ _id: 5491746fe812926818881a22,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9745,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10884,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:27:14\r',
+  changelistId: 3001490 }
+{ UID: 7,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: 3004574,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 1,
+  RLS: null,
+  changeType: '"U"',
+  currentNepID: 9745,
+  nextNepID: 9745 }
+9744
+3001490
+3000029
+3001490
+OBJEKAT 9753
+{ _id: 5491746fe812926818881a25,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9753,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10887,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:27:39\r',
+  changelistId: 3001490 }
+{ UID: 10,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: 3004574,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 2,
+  RLS: null,
+  changeType: '"U"',
+  currentNepID: 9753,
+  nextNepID: 9753 }
+22044
+3001490
+3000029
+3001490
+OBJEKAT 9755
+{ _id: 5491746fe812926818881a28,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9755,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10890,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:27:55\r',
+  changelistId: 3001490 }
+{ UID: 13,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: 3004574,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 3,
+  RLS: null,
+  changeType: '"U"',
+  currentNepID: 9755,
+  nextNepID: 9755 }
+22045
+3001490
+3000029
+3001490
+OBJEKAT 9757
+{ _id: 5491746fe812926818881a2b,
+  TransID: 1538,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 9757,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 10893,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '5/12/2010 11:28:13\r',
+  changelistId: 3001490 }
+{ UID: 16,
+  CHANGELISTID: 3002033,
+  CHANGELISTID1: 3004574,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 465,
+  NUMIDXRF: 3,
+  ACTIVE: 0,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 4,
+  RLS: null,
+  changeType: '"U"',
+  currentNepID: 9757,
+  nextNepID: 9757 }
+22046
+3001490
+3000029
+3001490
+OBJEKAT 27955
+{ _id: 54917470e812926818886041,
+  TransID: 4699,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 27955,
+  VrstaZakljucavanja: '"D"',
+  ElemPromID: 30782,
+  VrstaStanja: 2,
+  NoviID: 27950,
+  UserName: '"vesnar"',
+  VremeUpisa: '3/3/2014 14:00:42\r',
+  changelistId: 3004574 }
+undefined
+27950
+3004574
+3004574
+null
+{ _id: 54917470e812926818886275,
+  TransID: 4820,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 27955,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 31378,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '4/24/2014 8:18:13\r',
+  changelistId: 3004694 }
+{ UID: 17,
+  CHANGELISTID: 3004574,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 1,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 1,
+  RLS: null,
+  changeType: '"D"',
+  currentNepID: 27955,
+  nextNepID: 27955 }
+27950
+3004694
+3004574
+null
+U[ao
+{ _id: 54917470e81292681888625b,
+  TransID: 4821,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 27955,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 31352,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '4/22/2014 7:30:36\r',
+  changelistId: 3004695 }
+{ UID: 18,
+  CHANGELISTID: 3004694,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 2,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 1,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 27955,
+  nextNepID: 27955 }
+27950
+3004695
+3004574
+null
+U[ao
+{ _id: 54917470e812926818886269,
+  TransID: 4825,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 27955,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 31366,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '4/23/2014 13:54:19\r',
+  changelistId: 3004699 }
+{ UID: 19,
+  CHANGELISTID: 3004695,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 3,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 1,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 27955,
+  nextNepID: 27955 }
+27950
+3004699
+3004574
+null
+U[ao
+{ _id: 54917470e812926818886271,
+  TransID: 4827,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 27955,
+  VrstaZakljucavanja: '"A"',
+  ElemPromID: 31374,
+  VrstaStanja: 2,
+  NoviID: 28041,
+  UserName: '"vesnar"',
+  VremeUpisa: '4/24/2014 8:05:12\r',
+  changelistId: 3004701 }
+{ UID: 20,
+  CHANGELISTID: 3004699,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 4,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 1,
+  RLS: null,
+  changeType: '"O"',
+  currentNepID: 27955,
+  nextNepID: 27955 }
+27950
+3004701
+3004574
+null
+U[ao
+OBJEKAT 28041
+{ _id: 54917470e81292681888626d,
+  TransID: 4826,
+  Tabela: 1,
+  MatBrKO: 723070,
+  TabelaID: 28041,
+  VrstaZakljucavanja: '"O"',
+  ElemPromID: 31370,
+  VrstaStanja: 2,
+  NoviID: NaN,
+  UserName: '"vesnar"',
+  VremeUpisa: '4/24/2014 7:29:53\r',
+  changelistId: 3004700 }
+{ UID: 21,
+  CHANGELISTID: 3004701,
+  CHANGELISTID1: null,
+  COUNTRYID: 1,
+  CADDISTID: 46,
+  CADMUNID: 2059,
+  PARTYID: null,
+  NAME: null,
+  BEGINLIFESPANVERSION: null,
+  ENDLIFESPANVERSION: null,
+  NUMBERRF: 2111,
+  NUMIDXRF: 5,
+  ACTIVE: 1,
+  TEXT: '',
+  JOURNALNUM: null,
+  RLP: 1,
+  RLO: 1,
+  RLS: null,
+  changeType: '"A"',
+  currentNepID: 27955,
+  nextNepID: 28041 }
+27950
+3004700
+3004574
+null

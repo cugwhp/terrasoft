@@ -1,48 +1,52 @@
 var app = require('../../app');
+var cm = require('./cm');
+
+var Utilities = require('./Utilities');
 
 function Owners() {
 
 };
 
-Owners.partyId = 0;
+Owners.RS_OWNER_SEQUENCE = 'KNZ_VOZD.RSOWNER_SEQ' + cm.cadMunId;
+
+Owners.clear = function() {
+    var mongo = app.db;
+    return mongo.lica.remove({});
+};
 
 Owners.toMongo = function() {
     //var app = require('../../app');
     var conn = app.adodb.knl;
     var mongo = app.db;
-
-    /*
-     MatBrNasUli
-     RbBrUli
-     VrstaLica
-     MatBrLica
-     Prezime
-     Ime
-     ImeRoditelja
-     Napomena
-     LiceID
-     PostanskiBroj
-     Drzava
-     Mesto
-     Ulica
-     KucniBroj
-     KucniPodbroj
-     BrojStana
-     SifraPoreskogObveznika
-     IndOtpisa
-     MatBrSlu
-     Drzavljanstvo
-     VaziOd
-     UserName
-     RazlogPromene
-     OldID
-     */
-
-    conn.query('SELECT * FROM Lica')
+    conn.query('SELECT ' +
+        'MatBrNasUli, ' +
+        'RbBrUli, ' +
+        'VrstaLica, ' +
+        'MatBrLica, ' +
+        'Prezime, ' +
+        'Ime, ' +
+        'ImeRoditelja, ' +
+        'Napomena, ' +
+        'LiceID, ' +
+        'PostanskiBroj, ' +
+        'Drzava, ' +
+        'Mesto, ' +
+        'Ulica, ' +
+        'KucniBroj, ' +
+        'KucniPodbroj, ' +
+        'BrojStana, ' +
+        'SifraPoreskogObveznika, ' +
+        'IndOtpisa, ' +
+        'MatBrSlu, ' +
+        'Drzavljanstvo, ' +
+        'Format(VaziOd, "yyyy/mm/dd HH:mm:ss") AS VaziOd, ' +
+        'UserName, ' +
+        'RazlogPromene, ' +
+        'OldID ' +
+        'FROM Lica')
         .on('done', function(data) {
             var preparedData = data.records.map(function(rec) {
-                rec.CREATED = rec.CREATED ? new Date(rec.CREATED) : null;
-                rec.RETIRED = rec.RETIRED ? new Date(rec.RETIRED) : null;
+                rec.VaziOd = rec.VaziOd ? new Date(rec.VaziOd) : null;
                 return rec;
             });
             mongo.lica.insert(preparedData)
@@ -61,3 +65,50 @@ Owners.toMongo = function() {
             console.log(err);
         })
 };
+
+Owners.createRsOwner = function(owner) {
+    var name = owner.Ime;
+    var surname = owner.Prezime;
+    var middlename = owner.ImeRoditelja;
+
+    if((owner.VrstaLica != 2000) && (owner.VrstaLica != 2001)) {
+        name = owner.Prezime;
+        surname = '';
+        middlename = '';
+    }
+
+    return {
+        PARTYID: Utilities.createId(owner.LiceID), //Owners.RS_OWNER_SEQUENCE + '.NEXTVAL',
+        ADDRESSID: null,
+        PARTYTYPEID: Utilities.findIdBySign(Owners.laPartytype, owner.VrstaLica),
+        PARTYROLEID: null,
+        NAME: name,
+        PERSONALNUM: owner.MatBrLica,
+        ACTIVE: 1, //u bazi Lazarevac nema promena na licima
+        PASSPORTNUM: null,
+        PERSONALID: null,
+        CHANGEID: null, //u bazi Lazarevac nema promena na licima
+        CHANGEID1: null, //u bazi Lazarevac nema promena na licima
+        SURNAME: surname,
+        MIDDLENAME: middlename
+    }
+};
+
+Owners.process = function() {
+    var mongo = app.db;
+
+    Owners.laPartytype = Utilities.loadCodelist('la_partytype.json');
+
+    var resultPromise = mongo.lica.find({})
+        .toArray()
+        .then(function(owners) {
+            var rsOwner = owners.map(Owners.createRsOwner);
+            return rsOwner;
+        });
+
+    return resultPromise;
+};
+
+Owners.laPartytype = [];
+
+module.exports = Owners;

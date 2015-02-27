@@ -1,0 +1,17 @@
+DEO PARCELE 14
+OBJEKAT 15
+
+(0, null, 3003251, 1, 46, 2026, null, null, null, null, 354, 1, 0, '', null, 1, null, null);
+
+(2, null, 3003176, 1, 46, 2026, null, null, null, null, 354, 1, 0, '', null, 1, 1, null);
+
+(3, 3003176, 3003315, 1, 46, 2026, null, null, null, null, 354, 2, 0, '', null, 1, 1, null);
+
+(1, 3003251, 3003315, 1, 46, 2026, null, null, null, null, 354, 2, 0, '', null, 1, null, null);
+
+(5, 3003315, null, 1, 46, 2026, null, null, null, null, 2393, 1, 1, '', null, 1, null, null);
+
+(6, 3003315, null, 1, 46, 2026, null, null, null, null, 2393, 3, 1, '', null, 1, 1, null);
+
+
+
